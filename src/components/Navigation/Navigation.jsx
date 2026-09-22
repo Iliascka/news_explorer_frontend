@@ -1,17 +1,26 @@
 import "./Navigation.css";
+
 import logoutIcon from "../../assets/logout-icon.svg";
 
-function Navigation() {
+function Navigation({ isLoggedIn }) {
+  //Later this will be the loggedInState
+
   return (
     <nav className="nav">
-      <ul className="nav__list">
+      <ul className={`nav__list ${!isLoggedIn ? "nav__list_logged-out" : ""}`}>
         {" "}
         <li classname="nav__item">Home</li>
-        <li classname="nav__item">Saved Articles</li>
+        {isLoggedIn && <li classname="nav__item">Saved Articles</li>}
         <li classname="nav__item">
-          <button className="nav__button" type="button">
-            Sign in <img className="nav__button-icon" src={logoutIcon} alt="" />
-          </button>
+          {isLoggedIn ? (
+            <button type="button" className="nav__button">
+              Ilias <img className="nav__button-icon" src={logoutIcon} alt="" />
+            </button>
+          ) : (
+            <button type="button" className="nav__button_logged-out">
+              Sign in
+            </button>
+          )}
         </li>
       </ul>
     </nav>
