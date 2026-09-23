@@ -9,6 +9,10 @@
   font-size: 18px;
 }
 
+.nav__list_logged-out {
+  gap: 42px;
+}
+
 .nav__button {
   display: flex;
   align-items: center;
@@ -36,15 +40,4 @@
 .nav__button-icon {
   width: 24px;
   height: 24px;
-}
-
-.nav__list_logged-out {
-  display: flex;
-  align-items: center;
-  gap: 42px;
-  list-style: none;
-  margin: 0;
-  font-family: "Roboto";
-  font-weight: 500;
-  font-size: 18px;
 }
