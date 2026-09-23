@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import About from "../About/About";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Header />
           <Main />
         </div>
+        <About />
       </div>
     </>
   );

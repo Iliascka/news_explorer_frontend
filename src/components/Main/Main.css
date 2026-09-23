@@ -6,11 +6,16 @@
   z-index: 1;
 }
 
+.main__content {
+  margin: 0 0 88px 0;
+}
+
 .main__title {
   font-family: "Roboto Slab";
   font-weight: 400;
   font-size: 60px;
   line-height: 64px;
+  margin: 0 0 32px 0;
 }
 
 .main__body {
@@ -18,4 +23,5 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+  margin: 0;
 }
