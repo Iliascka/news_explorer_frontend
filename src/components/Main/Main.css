@@ -1,4 +1,21 @@
-.hero {
+.main {
   max-width: 608px;
   margin: 0 auto;
+  color: rgba(255, 255, 255, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.main__title {
+  font-family: "Roboto Slab";
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+}
+
+.main__body {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
 }
