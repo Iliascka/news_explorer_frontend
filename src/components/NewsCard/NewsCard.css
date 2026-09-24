@@ -1,0 +1,79 @@
+.card {
+  width: 400px;
+  height: 576px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 12px rgba(8, 29, 45, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card__content {
+  padding: 17px 24px 7px 24px;
+}
+
+.card__image {
+  width: 100%;
+  /* border-radius: 16px 16px 0 0; */
+}
+
+.card__header {
+  font-family: "Source Sans";
+  font-weight: 400;
+  font-size: 18px;
+  color: rgba(182, 188, 191, 1);
+  margin: 0 0 15px 0;
+}
+
+.card__title {
+  font-family: "Roboto Slab";
+  font-weight: 400;
+  font-size: 26px;
+  color: rgba(26, 27, 34, 1);
+  margin: 0 0 16px 0;
+}
+
+.card__description {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(26, 27, 34, 1);
+  margin: 0 0 18px 0;
+}
+
+.card__footer {
+  font-family: "Roboto Slab";
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  color: rgba(182, 188, 191, 1);
+}
+
+.card__save-button {
+  background-color: rgba(255, 255, 255, 1);
+  border: none;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border-radius: 8px;
+  padding: 10px 13px 11px 13px;
+  display: flex;
+  align-items: center;
+}
+
+.card__keyword {
+  background-color: rgba(255, 255, 255, 1);
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 8px 22px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
