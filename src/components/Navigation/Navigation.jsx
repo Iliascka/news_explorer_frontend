@@ -1,6 +1,6 @@
 import "./Navigation.css";
 
-import logoutIcon from "../../assets/logout-icon.svg";
+import logoutIcon from "../../assets/logoutIcon.svg";
 
 function Navigation({ isLoggedIn }) {
   return (

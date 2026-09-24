@@ -7,6 +7,7 @@ function NewsCard() {
     <article className="card">
       <img src={cardImg} alt="cardImg" className="card__image" />
       <span className="card__keyword">Nature</span>
+      <span className="card__tooltip">Sign in to save articles</span>
       <button type="button" className="card__save-button">
         <img
           src={bookmarkIcon}
