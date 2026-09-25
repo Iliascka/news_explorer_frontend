@@ -1,20 +1,27 @@
-import bookmarkIcon from "../../assets/bookmark.svg";
 import cardImg from "../../assets/card-img.jpg";
 import "./NewsCard.css";
+import { useLocation } from "react-router-dom";
 
 function NewsCard() {
+  // const location = useLocation();
+  // const isSavedPage = location.pathname === "/save-news";
+  const isSavedPage = false;
+  const toolTipText = isSavedPage
+    ? "Remove from saved"
+    : "Sign in to save articles";
+  const buttonType = isSavedPage
+    ? "card__button_type_delete"
+    : "card__button_type_bookmark";
   return (
     <article className="card">
       <img src={cardImg} alt="cardImg" className="card__image" />
       <span className="card__keyword">Nature</span>
-      <span className="card__tooltip">Sign in to save articles</span>
-      <button type="button" className="card__save-button">
-        <img
-          src={bookmarkIcon}
-          alt="bookmark-icon"
-          className="card__save-icon"
-        />
-      </button>
+      <button
+        type="button"
+        className={`card__save-button ${buttonType}`}
+      ></button>
+      <span className="card__tooltip">{toolTipText}</span>
+
       <div className="card__content">
         <p className="card__header">November 4, 2026</p>
         <h2 className="card__title">
