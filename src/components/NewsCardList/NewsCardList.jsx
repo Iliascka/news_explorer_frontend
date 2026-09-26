@@ -1,12 +1,30 @@
+import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
-import { articleData } from "../../utils/articleData";
 import "./NewsCardList.css";
-function NewsCardList() {
+
+function NewsCardList({ articles }) {
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  let buttonText = " ";
+
+  const handleArticleList = () => {
+    if (visibleCount < articles.length) {
+      setVisibleCount((previousValue) => {
+        return previousValue + 3;
+      });
+    } else {
+      return setVisibleCount(3);
+    }
+  };
+  visibleCount < articles.length
+    ? (buttonText = "Shows more")
+    : (buttonText = "Show less");
+
   return (
     <div className="article">
       <h2 className="article__title">Search results</h2>
       <ul className="article__list">
-        {articleData.map((item) => {
+        {articles.slice(0, visibleCount).map((item) => {
           return (
             <NewsCard
               key={item.id}
@@ -20,8 +38,12 @@ function NewsCardList() {
           );
         })}
       </ul>
-      <button type="button" className="article__button">
-        Shows more
+      <button
+        onClick={handleArticleList}
+        type="button"
+        className="article__button"
+      >
+        {buttonText}
       </button>
     </div>
   );
