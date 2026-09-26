@@ -1,0 +1,33 @@
+.article {
+  max-width: 1232px;
+  margin: auto;
+  padding: 80px 0;
+}
+
+.article__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.article__title {
+  font-family: "Roboto Slab";
+  font-weight: 400;
+  font-size: 40px;
+  margin: 0 0 64px 0;
+}
+
+.article__button {
+  padding: 20px 99px;
+  border-radius: 80px;
+  display: block;
+  margin: auto;
+  background-color: rgba(232, 232, 232, 1);
+  border: none;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 18px;
+  height: 64px;
+  color: rgba(26, 27, 34, 1);
+  margin: 64px auto 0;
+}

@@ -14,9 +14,10 @@ function App() {
           <Header />
           <Main />
         </div>
+        <NewsCardList />
         <About />
         <Footer />
-        <NewsCardList />
+
         {/* <NewsCard /> */}
       </div>
     </>
