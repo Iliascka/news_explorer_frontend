@@ -1,24 +1,18 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "../Header/Header";
-import Main from "../Main/Main";
+import Hero from "../Hero/Hero";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
-import NewsCardList from "../NewsCardList/NewsCardList";
+import Main from "../Main/Main";
 
 function App() {
   return (
     <>
       <div className="page">
-        <div className="hero">
-          <Header />
-          <Main />
-        </div>
-        <NewsCardList />
+        <Hero />
         <About />
         <Footer />
-
-        {/* <NewsCard /> */}
+        <Main />
       </div>
     </>
   );

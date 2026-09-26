@@ -3,23 +3,3 @@
   max-width: 1440px;
   margin: 0 auto;
 }
-
-.hero {
-  height: 576px;
-  background-image: url(../../assets/hero.jpg);
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.45);
-  z-index: 0;
-}
-
-.search-form__input:focus {
-  outline: none;
-}
