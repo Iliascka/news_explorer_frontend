@@ -6,7 +6,7 @@ import logoutIconWhite from "../../assets/logoutIconWhite.svg";
 // const locatation = useLocation();
 // const buttonIcon =
 //   location.pathname === "/" ? "nav__button_main" : "nav__button";
-const buttonMain = true;
+const buttonMain = trues;
 const buttonIcon = buttonMain ? logoutIconWhite : logoutIconBlack;
 
 function Navigation({ isSavedNews, isLoggedIn }) {
