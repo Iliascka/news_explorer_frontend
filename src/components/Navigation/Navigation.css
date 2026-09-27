@@ -24,14 +24,6 @@
   padding: 12px 12px 12px 19px;
 }
 .nav__button_main {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  border-radius: 100px;
-  border: 1px solid;
-  background-color: transparent;
-  font: inherit;
-  padding: 12px 12px 12px 19px;
   color: white;
   border: 1px solid white;
 }

@@ -1,9 +1,6 @@
 import "./NewsCard.css";
-import { useLocation } from "react-router-dom";
 
 function NewsCard({ tag, date, title, paragraph, image, source }) {
-  // const location = useLocation();
-  // const isSavedPage = location.pathname === "/save-news";
   const isSavedPage = false;
   const toolTipText = isSavedPage
     ? "Remove from saved"

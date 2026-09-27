@@ -9,7 +9,7 @@ function Footer() {
       <p className="footer__info">© 2024 Supersite, Powered by News API</p>
       <div className="footer__links">
         <ul className="footer__list">
-          <NavLink className="nav-link" to="/">
+          <NavLink className="nav-link nav-link_saved-news" to="/">
             <li className="footer__list-item">Home</li>
           </NavLink>
           <li className="footer__list-item">TripleTen</li>

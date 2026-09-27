@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ArticlesContext } from "../../contexts/ArticlesContext";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import "./Main.css";
-import { articleData } from "../../utils/articleData";
 
-function Main({ isLoggedIn, ssSavedNews }) {
-  const [articles, setArticles] = useState(articleData);
-
+function Main() {
+  const { articles } = useContext(ArticlesContext);
   return (
     <>
-      <NewsCardList articles={articles} />
+      <NewsCardList articles={articles} title button />
     </>
   );
 }

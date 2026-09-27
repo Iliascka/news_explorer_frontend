@@ -2,7 +2,7 @@ import { useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ articles }) {
+function NewsCardList({ articles, title, button }) {
   const [visibleCount, setVisibleCount] = useState(3);
   let buttonText = "";
 
@@ -21,7 +21,7 @@ function NewsCardList({ articles }) {
 
   return (
     <div className="article">
-      <h2 className="article__title">Search results</h2>
+      {title && <h2 className="article__title">Search results</h2>}
       <ul className="article__list">
         {articles.slice(0, visibleCount).map((item) => {
           return (
@@ -37,13 +37,15 @@ function NewsCardList({ articles }) {
           );
         })}
       </ul>
-      <button
-        onClick={handleArticleList}
-        type="button"
-        className="article__button"
-      >
-        {buttonText}
-      </button>
+      {button && (
+        <button
+          onClick={handleArticleList}
+          type="button"
+          className="article__button"
+        >
+          {buttonText}
+        </button>
+      )}
     </div>
   );
 }

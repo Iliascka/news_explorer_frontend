@@ -2,7 +2,7 @@ import natureImg from "../assets/nature.jpg";
 import natureImg2 from "../assets/nature2.jpg";
 import natureImg3 from "../assets/nature3.jpg";
 import natureImg4 from "../assets/nature4.jpg";
-export const articleData = [
+export const articlesData = [
   {
     id: "1",
     tag: "Nature",

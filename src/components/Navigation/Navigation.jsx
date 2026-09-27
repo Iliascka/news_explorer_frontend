@@ -1,25 +1,28 @@
-import { useLocation } from "react";
+import { useLocation } from "react-router-dom";
 import "./Navigation.css";
 import logoutIconBlack from "../../assets/logoutIconBlack.svg";
 import logoutIconWhite from "../../assets/logoutIconWhite.svg";
 import { NavLink } from "react-router-dom";
 
-// const locatation = useLocation();
-// const buttonIcon =
-//   location.pathname === "/" ? "nav__button_main" : "nav__button";
-const buttonMain = false;
-const buttonIcon = buttonMain ? logoutIconWhite : logoutIconBlack;
-
 function Navigation({ isSavedNews, isLoggedIn }) {
+  const location = useLocation();
+  const buttonMain = location.pathname === "/";
+  const buttonIcon = buttonMain ? logoutIconWhite : logoutIconBlack;
   return (
     <nav className="nav">
       <ul className={`nav__list ${!isSavedNews ? "nav__list_logged-out" : ""}`}>
         {" "}
-        <NavLink className="nav-link" to="/">
+        <NavLink
+          className={`nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}`}
+          to="/"
+        >
           <li className="nav__item">Home</li>
         </NavLink>
         {(isSavedNews || isLoggedIn) && (
-          <NavLink className="nav-link" to="/saved-news">
+          <NavLink
+            className={`nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}`}
+            to="/saved-news"
+          >
             {" "}
             <li className="nav__item">Saved Articles</li>
           </NavLink>

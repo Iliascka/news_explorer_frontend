@@ -20,8 +20,13 @@ ol {
   margin: 0;
   padding: 0;
 }
-
 .nav-link {
   text-decoration: none;
+}
+
+.nav-link_main {
+  color: rgba(255, 255, 255, 1);
+}
+.nav-link_saved-news {
   color: rgba(26, 27, 34, 1);
 }
