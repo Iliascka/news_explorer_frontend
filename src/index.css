@@ -20,3 +20,8 @@ ol {
   margin: 0;
   padding: 0;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: rgba(26, 27, 34, 1);
+}

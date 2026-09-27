@@ -4,9 +4,9 @@ import Hero from "../Hero/Hero";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
-import Header from "../Header/Header";
 import SavedNews from "../SavedNews/SavedNews";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   // States
@@ -17,10 +17,22 @@ function App() {
     <>
       <div className="page">
         <CurrentUserContext.Provider value={{ isLoggedIn, isSavedNews }}>
-          <Hero />
-          <Main />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  {" "}
+                  <Hero />
+                  <Main />
+                  <About />
+                </>
+              }
+            ></Route>
+            <Route path="/saved-news" element={SavedNews} />
+          </Routes>
         </CurrentUserContext.Provider>
-        <About />
+
         <Footer />
       </div>
     </>
