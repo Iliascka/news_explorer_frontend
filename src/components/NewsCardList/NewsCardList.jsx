@@ -4,8 +4,7 @@ import "./NewsCardList.css";
 
 function NewsCardList({ articles }) {
   const [visibleCount, setVisibleCount] = useState(3);
-
-  let buttonText = " ";
+  let buttonText = "";
 
   const handleArticleList = () => {
     if (visibleCount < articles.length) {

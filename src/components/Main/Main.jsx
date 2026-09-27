@@ -3,7 +3,7 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 import "./Main.css";
 import { articleData } from "../../utils/articleData";
 
-function Main() {
+function Main({ isLoggedIn, ssSavedNews }) {
   const [articles, setArticles] = useState(articleData);
 
   return (

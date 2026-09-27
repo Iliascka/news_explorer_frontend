@@ -1,18 +1,30 @@
+import { useLocation } from "react";
 import "./Navigation.css";
+import logoutIconBlack from "../../assets/logoutIconBlack.svg";
+import logoutIconWhite from "../../assets/logoutIconWhite.svg";
 
-import logoutIcon from "../../assets/logoutIcon.svg";
+// const locatation = useLocation();
+// const buttonIcon =
+//   location.pathname === "/" ? "nav__button_main" : "nav__button";
+const buttonMain = true;
+const buttonIcon = buttonMain ? logoutIconWhite : logoutIconBlack;
 
-function Navigation({ isLoggedIn }) {
+function Navigation({ isSavedNews, isLoggedIn }) {
   return (
     <nav className="nav">
-      <ul className={`nav__list ${!isLoggedIn ? "nav__list_logged-out" : ""}`}>
+      <ul className={`nav__list ${!isSavedNews ? "nav__list_logged-out" : ""}`}>
         {" "}
         <li className="nav__item">Home</li>
-        {isLoggedIn && <li classname="nav__item">Saved Articles</li>}
+        {(isSavedNews || isLoggedIn) && (
+          <li classname="nav__item">Saved Articles</li>
+        )}
         <li className="nav__item">
-          {isLoggedIn ? (
-            <button type="button" className="nav__button">
-              Ilias <img className="nav__button-icon" src={logoutIcon} alt="" />
+          {isSavedNews || isLoggedIn ? (
+            <button
+              type="button"
+              className={`nav__button ${buttonMain ? "nav__button_main" : ""}`}
+            >
+              Ilias <img className="nav__button-icon" src={buttonIcon} alt="" />
             </button>
           ) : (
             <button type="button" className="nav__button_logged-out">

@@ -10,9 +10,9 @@ function App() {
     <>
       <div className="page">
         <Hero />
+        <Main />
         <About />
         <Footer />
-        <Main />
       </div>
     </>
   );
