@@ -9,6 +9,7 @@ import { articlesData } from "../../utils/articleData";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 import { Routes, Route } from "react-router-dom";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 function App() {
   // States
@@ -36,7 +37,7 @@ function App() {
             </Routes>
           </ArticlesContext.Provider>
         </CurrentUserContext.Provider>
-
+        <RegisterModal />
         <Footer />
       </div>
     </>

@@ -1,4 +1,4 @@
-function ModalWithForm({ children, title, buttonText }) {
+function ModalWithForm({ children, title, buttonText, secondaryButtonText }) {
   return (
     <div className="modal">
       <div className="modal__content">
@@ -8,7 +8,12 @@ function ModalWithForm({ children, title, buttonText }) {
         </button>
         <form action="" className="modal__form">
           {children}
-          <button className="modal__submit">{buttonText}</button>
+          <button type="submit" className="modal__submit">
+            {buttonText}
+          </button>
+          <button type="button" className="modal__secondary-button">
+            {secondaryButtonText}
+          </button>
         </form>
       </div>
     </div>
