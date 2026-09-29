@@ -11,6 +11,7 @@ import { ArticlesContext } from "../../contexts/ArticlesContext";
 import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import SuccessModal from "../SuccessModal/SuccessModal";
 
 function App() {
   // States
@@ -76,6 +77,7 @@ function App() {
           onClose={closeModal}
           onSecondaryButtonClick={handleSignUpModal}
         />
+        <SuccessModal />
         <Footer />
       </div>
     </>

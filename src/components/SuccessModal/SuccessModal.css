@@ -1,0 +1,57 @@
+.success-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.164);
+}
+
+.success-modal__content {
+  max-width: 430px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 43px 0px 51px 36px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+}
+
+.success-modal__close-btn {
+  position: absolute;
+  top: -46px;
+  right: -46px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+}
+
+.success-modal__text {
+  font-family: "Roboto";
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 100%;
+  margin: 0;
+}
+
+.success-modal__button {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 18px;
+  color: rgba(47, 113, 229, 1);
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
