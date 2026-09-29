@@ -14,8 +14,35 @@ import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   // States
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState(articlesData);
+  const [activeModal, setActiveModal] = useState("");
+
+  const handleSignUpModal = () => {
+    setActiveModal("signUp");
+  };
+  const handleLoginModal = () => {
+    setActiveModal("logIn");
+  };
+
+  const closeModal = () => {
+    setActiveModal("");
+  };
+
+  const handleEscapeClose = (evt) => {
+    if (evt.key === "Escape") {
+      closeModal();
+    }
+  };
+
+  const handleOverlay = (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      closeModal();
+    }
+  };
+
+  document.addEventListener("keydown", handleEscapeClose);
+  document.addEventListener("mousedown", handleOverlay);
 
   return (
     <>
@@ -28,7 +55,7 @@ function App() {
                 element={
                   <>
                     {" "}
-                    <Hero />
+                    <Hero handleLoginModal={handleLoginModal} />
                     <Main />
                     <About />
                   </>
@@ -38,7 +65,17 @@ function App() {
             </Routes>
           </ArticlesContext.Provider>
         </CurrentUserContext.Provider>
-        <RegisterModal />
+        <RegisterModal
+          isOpen={activeModal === "signUp"}
+          onClose={closeModal}
+          handleLoginModal={handleLoginModal}
+          onSecondaryButtonClick={handleLoginModal}
+        />
+        <LoginModal
+          isOpen={activeModal === "logIn"}
+          onClose={closeModal}
+          onSecondaryButtonClick={handleSignUpModal}
+        />
         <Footer />
       </div>
     </>

@@ -4,10 +4,11 @@ import logoutIconBlack from "../../assets/logoutIconBlack.svg";
 import logoutIconWhite from "../../assets/logoutIconWhite.svg";
 import { NavLink } from "react-router-dom";
 
-function Navigation({ isSavedNews, isLoggedIn }) {
+function Navigation({ isSavedNews, isLoggedIn, handleLoginModal }) {
   const location = useLocation();
   const buttonMain = location.pathname === "/";
   const buttonIcon = buttonMain ? logoutIconWhite : logoutIconBlack;
+
   return (
     <nav className="nav">
       <ul className={`nav__list ${!isSavedNews ? "nav__list_logged-out" : ""}`}>
@@ -36,7 +37,11 @@ function Navigation({ isSavedNews, isLoggedIn }) {
               Ilias <img className="nav__button-icon" src={buttonIcon} alt="" />
             </button>
           ) : (
-            <button type="button" className="nav__button_logged-out">
+            <button
+              onClick={handleLoginModal}
+              type="button"
+              className="nav__button_logged-out"
+            >
               Sign in
             </button>
           )}

@@ -23,6 +23,11 @@
   font: inherit;
   padding: 12px 12px 12px 19px;
 }
+
+.nav__button_logged-out:focus-visible {
+  outline: none;
+}
+
 .nav__button_main {
   color: white;
   border: 1px solid white;

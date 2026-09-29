@@ -1,12 +1,20 @@
 import "./ModalWithForm.css";
 import modalCloseIcon from "../../assets/modal-close.svg";
 
-function ModalWithForm({ children, title, buttonText, secondaryButtonText }) {
+function ModalWithForm({
+  children,
+  title,
+  buttonText,
+  secondaryButtonText,
+  isOpen,
+  onClose,
+  onSecondaryButtonClick,
+}) {
   return (
-    <div className="modal">
+    <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
-        <button className="modal__close">
+        <button onClick={onClose} className="modal__close">
           <img src={modalCloseIcon} alt="" className="modal__close-icon" />
         </button>
         <form action="" className="modal__form">
@@ -18,7 +26,11 @@ function ModalWithForm({ children, title, buttonText, secondaryButtonText }) {
             <button type="submit" className="modal__submit">
               {buttonText}
             </button>
-            <button type="button" className="modal__secondary-button">
+            <button
+              onClick={onSecondaryButtonClick}
+              type="button"
+              className="modal__secondary-button"
+            >
               <span className="modal__secondary-text">or</span>{" "}
               {secondaryButtonText}
             </button>
