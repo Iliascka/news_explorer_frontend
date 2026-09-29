@@ -5,7 +5,7 @@ function RegisterModal() {
     <ModalWithForm
       title="Sign up"
       buttonText="Sign up"
-      secondaryButtonText="or Sign in"
+      secondaryButtonText="Sign in"
     >
       <label htmlFor="register-email" className="modal__label">
         Email

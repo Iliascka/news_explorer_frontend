@@ -5,7 +5,7 @@ function LoginModal() {
     <ModalWithForm
       title="Sign in"
       buttonText="Sign in"
-      secondaryButtonText="or Sign up"
+      secondaryButtonText="Sign up"
     >
       <label htmlFor="login-email" className="modal__label">
         Email

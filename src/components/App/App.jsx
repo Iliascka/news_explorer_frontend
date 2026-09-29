@@ -10,6 +10,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   // States
