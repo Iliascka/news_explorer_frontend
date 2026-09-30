@@ -1,6 +1,9 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useModalClose from "../../hooks/useModalClose";
 
 function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
+  const { handleOverlayClick } = useModalClose(isOpen, onClose);
+
   return (
     <ModalWithForm
       title="Sign in"
@@ -9,6 +12,7 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
       isOpen={isOpen}
       onClose={onClose}
       onSecondaryButtonClick={onSecondaryButtonClick}
+      handleOverlayClick={handleOverlayClick}
     >
       <label htmlFor="login-email" className="modal__label">
         Email

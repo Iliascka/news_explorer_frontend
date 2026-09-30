@@ -17,33 +17,23 @@ function App() {
   // States
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState(articlesData);
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("success");
 
   const handleSignUpModal = () => {
     setActiveModal("signUp");
   };
+
   const handleLoginModal = () => {
     setActiveModal("logIn");
+  };
+
+  const handleSuccessModal = () => {
+    setActiveModal("success");
   };
 
   const closeModal = () => {
     setActiveModal("");
   };
-
-  const handleEscapeClose = (evt) => {
-    if (evt.key === "Escape") {
-      closeModal();
-    }
-  };
-
-  const handleOverlay = (evt) => {
-    if (evt.target.classList.contains("modal")) {
-      closeModal();
-    }
-  };
-
-  document.addEventListener("keydown", handleEscapeClose);
-  document.addEventListener("mousedown", handleOverlay);
 
   return (
     <>
@@ -77,7 +67,7 @@ function App() {
           onClose={closeModal}
           onSecondaryButtonClick={handleSignUpModal}
         />
-        <SuccessModal />
+        <SuccessModal isOpen={activeModal === "success"} onClose={closeModal} />
         <Footer />
       </div>
     </>

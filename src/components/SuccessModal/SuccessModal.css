@@ -9,6 +9,11 @@
   justify-content: center;
   background-color: transparent;
   background-color: rgba(0, 0, 0, 0.164);
+  visibility: hidden;
+}
+
+.success-modal-opened {
+  visibility: visible;
 }
 
 .success-modal__content {
@@ -36,6 +41,7 @@
   justify-content: center;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .success-modal__text {

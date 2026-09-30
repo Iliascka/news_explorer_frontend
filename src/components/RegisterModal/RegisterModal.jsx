@@ -1,6 +1,9 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useModalClose from "../../hooks/useModalClose";
 
 function RegisterModal({ isOpen, onClose, onSecondaryButtonClick }) {
+  const { handleOverlayClick } = useModalClose(isOpen, onClose);
+
   return (
     <ModalWithForm
       title="Sign up"
@@ -9,6 +12,7 @@ function RegisterModal({ isOpen, onClose, onSecondaryButtonClick }) {
       isOpen={isOpen}
       onClose={onClose}
       onSecondaryButtonClick={onSecondaryButtonClick}
+      handleOverlayClick={handleOverlayClick}
     >
       <label htmlFor="register-email" className="modal__label">
         Email

@@ -1,12 +1,18 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./SuccessModal.css";
 import modalCloseIcon from "../../assets/modal-close.svg";
+import useModalClose from "../../hooks/useModalClose";
 
-function SuccessModal() {
+function SuccessModal({ onClose, isOpen }) {
+  const { handleOverlayClick } = useModalClose(isOpen, onClose);
+
   return (
-    <div className="success-modal">
+    <div
+      onClick={handleOverlayClick}
+      className={`success-modal  ${isOpen ? "success-modal-opened" : ""}`}
+    >
       <div className="success-modal__content">
-        <button className="success-modal__close-btn">
+        <button onClick={onClose} className="success-modal__close-btn">
           <img
             src={modalCloseIcon}
             alt="modalCloseIcon"
@@ -20,6 +26,7 @@ function SuccessModal() {
       </div>
     </div>
   );
+  ``;
 }
 
 export default SuccessModal;
