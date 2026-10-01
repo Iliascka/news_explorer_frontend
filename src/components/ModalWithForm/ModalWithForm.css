@@ -107,6 +107,16 @@
   color: rgba(47, 113, 229, 1);
   cursor: pointer;
 }
+
+.modal__error {
+  display: block;
+  font-family: "Cabinet Grotesk";
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 77, 77, 1);
+  margin-top: 6px;
+}
+
 .modal__error-text {
   font-family: "Inter";
   font-weight: 400;
@@ -115,4 +125,8 @@
   letter-spacing: 0%;
   text-align: center;
   color: rgba(255, 0, 0, 1);
+}
+
+.modal__input_type_error {
+  border-bottom-color: rgba(255, 77, 77, 1);
 }

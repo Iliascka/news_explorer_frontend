@@ -41,6 +41,7 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
   const showPasswordError =
     Boolean(errors.password) &&
     (hasSubmitted || values.password.trim().length > 0);
+
   return (
     <ModalWithForm
       title="Sign in"
@@ -57,26 +58,32 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
         <input
           id="login-email"
           type="email"
-          className="modal__input"
+          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
           placeholder="Enter email"
           name="email"
           onChange={handleChange}
           value={values.email}
           aria-invalid={showEmailError}
         />
+        {showEmailError ? (
+          <span className="modal__error">{errors.email}</span>
+        ) : null}
       </label>
       <label htmlFor="login-password" className="modal__label">
         Password
         <input
           id="login-password"
           type="password"
-          className="modal__input"
+          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
           placeholder="Enter password"
           name="password"
           onChange={handleChange}
           value={values.password}
           aria-invalid={showPasswordError}
         />
+        {showPasswordError ? (
+          <span className="modal__error">{errors.password}</span>
+        ) : null}
       </label>
     </ModalWithForm>
   );

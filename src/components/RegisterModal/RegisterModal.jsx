@@ -73,31 +73,37 @@ function RegisterModal({
         <input
           id="register-email"
           type="email"
-          className="modal__input"
+          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
           placeholder="Enter email"
           name="email"
           value={values.email}
           onChange={handleChange}
           aria-invalid={showEmailError}
         />
+        {showEmailError ? (
+          <span className="modal__error">{errors.email}</span>
+        ) : null}
       </label>
       <label htmlFor="register-password" className="modal__label">
         Password
         <input
           id="register-password"
           type="password"
-          className="modal__input"
+          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
           name="password"
           value={values.password}
           onChange={handleChange}
           aria-invalid={showPasswordError}
         />
+        {showPasswordError ? (
+          <span className="modal__error">{errors.password}</span>
+        ) : null}
       </label>
       <label htmlFor="register-username" className="modal__label">
         Name
         <input
           type="text"
-          className="modal__input"
+          className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
           id="register-username"
           placeholder="Enter your username"
           name="name"
@@ -105,6 +111,9 @@ function RegisterModal({
           onChange={handleChange}
           aria-invalid={showNameError}
         />
+        {showNameError ? (
+          <span className="modal__error">{errors.name}</span>
+        ) : null}
       </label>
     </ModalWithForm>
   );
