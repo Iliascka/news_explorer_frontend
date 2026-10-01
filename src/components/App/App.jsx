@@ -17,7 +17,7 @@ function App() {
   // States
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState(articlesData);
-  const [activeModal, setActiveModal] = useState("success");
+  const [activeModal, setActiveModal] = useState("");
 
   const handleSignUpModal = () => {
     setActiveModal("signUp");
@@ -61,6 +61,7 @@ function App() {
           onClose={closeModal}
           handleLoginModal={handleLoginModal}
           onSecondaryButtonClick={handleLoginModal}
+          handleSuccessModal={handleSuccessModal}
         />
         <LoginModal
           isOpen={activeModal === "logIn"}

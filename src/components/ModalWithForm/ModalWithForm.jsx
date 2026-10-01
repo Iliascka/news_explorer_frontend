@@ -10,6 +10,8 @@ function ModalWithForm({
   onClose,
   onSecondaryButtonClick,
   handleOverlayClick,
+  onSubmit,
+  isValid,
 }) {
   return (
     <div
@@ -21,13 +23,13 @@ function ModalWithForm({
         <button onClick={onClose} className="modal__close">
           <img src={modalCloseIcon} alt="" className="modal__close-icon" />
         </button>
-        <form action="" className="modal__form">
+        <form onSubmit={onSubmit} className="modal__form">
           {children}
           <div className="modal__buttons">
             <span className="modal__error-text">
               This email is not available
             </span>
-            <button type="submit" className="modal__submit">
+            <button type="submit" className="modal__submit" disabled={!isValid}>
               {buttonText}
             </button>
             <button

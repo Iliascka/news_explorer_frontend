@@ -1,9 +1,46 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useModalClose from "../../hooks/useModalClose";
+import { useMemo } from "react";
+import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
   const { handleOverlayClick } = useModalClose(isOpen, onClose);
 
+  const defaultValues = useMemo(
+    () => ({
+      email: "",
+      password: "",
+      name: "",
+    }),
+    [],
+  );
+
+  const {
+    values,
+    errors,
+    hasSubmitted,
+    setHasSubmitted,
+    handleChange,
+    resetForm,
+    validateForm,
+    isValid,
+  } = useFormWithValidation(defaultValues);
+
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    setHasSubmitted(true);
+    const { nextIsValid } = validateForm(values);
+    if (!nextIsValid) {
+      return;
+    }
+  }
+
+  const showEmailError =
+    Boolean(errors.email) && (hasSubmitted || values.email.trim().length > 0);
+
+  const showPasswordError =
+    Boolean(errors.password) &&
+    (hasSubmitted || values.password.trim().length > 0);
   return (
     <ModalWithForm
       title="Sign in"
@@ -13,6 +50,7 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
       onClose={onClose}
       onSecondaryButtonClick={onSecondaryButtonClick}
       handleOverlayClick={handleOverlayClick}
+      isValid={isValid}
     >
       <label htmlFor="login-email" className="modal__label">
         Email
@@ -21,6 +59,10 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
           type="email"
           className="modal__input"
           placeholder="Enter email"
+          name="email"
+          onChange={handleChange}
+          value={values.email}
+          aria-invalid={showEmailError}
         />
       </label>
       <label htmlFor="login-password" className="modal__label">
@@ -30,6 +72,10 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
           type="password"
           className="modal__input"
           placeholder="Enter password"
+          name="password"
+          onChange={handleChange}
+          value={values.password}
+          aria-invalid={showPasswordError}
         />
       </label>
     </ModalWithForm>
