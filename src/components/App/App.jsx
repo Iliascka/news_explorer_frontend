@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SuccessModal from "../SuccessModal/SuccessModal";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
   // States
@@ -47,6 +48,7 @@ function App() {
                   <>
                     {" "}
                     <Hero handleLoginModal={handleLoginModal} />
+                    <Preloader />
                     <Main />
                     <About />
                   </>

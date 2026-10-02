@@ -1,0 +1,48 @@
+.circle-preloader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 282px;
+
+  background-color: rgba(245, 246, 247, 1);
+}
+
+.circle-preloader__icon {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #d5d5d5;
+  border-bottom-color: #212121;
+  border-radius: 50%;
+  animation: spin 9s infinite linear;
+  margin: 0 0 24px 0;
+  /* border: 1px solid; */
+}
+
+.circle-preloader__text {
+  animation: text-loading 3s ease-in-out infinite;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: rgba(108, 112, 122, 1);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes text-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
