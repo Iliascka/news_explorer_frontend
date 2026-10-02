@@ -19,6 +19,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState(articlesData);
   const [activeModal, setActiveModal] = useState("");
+  const [searchData, setSearchData] = useState(false);
 
   const handleSignUpModal = () => {
     setActiveModal("signUp");
@@ -48,7 +49,7 @@ function App() {
                   <>
                     {" "}
                     <Hero handleLoginModal={handleLoginModal} />
-                    <Preloader />
+                    <Preloader searchData={searchData} />
                     <Main />
                     <About />
                   </>
