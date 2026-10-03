@@ -93,7 +93,6 @@
   font-size: 12px;
   height: 40px;
   white-space: no-wrap;
-  display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Roboto";
@@ -108,19 +107,23 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.card__button_type_bookmark:hover {
+  background-image: url("../../assets/bookmark-hover.svg");
+}
+
 .card__button_type_bookmark-clicked {
   background-image: url("../../assets/bookmark-clicked.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .card__button_type_delete {
   background-image: url("../../assets/deleteIcon.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
-.card__button_type_bookmark:hover {
-  background-image: url("../../assets/bookmark-hover.svg");
-}
+
 .card__button_type_delete:hover {
   background-image: url("../../assets/deleteIcon-hover.svg");
 }
