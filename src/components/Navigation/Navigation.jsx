@@ -14,14 +14,19 @@ function Navigation({ isSavedNews, isLoggedIn, handleLoginModal }) {
       <ul className={`nav__list ${!isSavedNews ? "nav__list_logged-out" : ""}`}>
         {" "}
         <NavLink
-          className={`nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}`}
+          className={({ isActive }) =>
+            `nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}
+           ${isActive ? "nav-link_active" : ""}`
+          }
           to="/"
         >
           <li className="nav__item">Home</li>
         </NavLink>
         {(isSavedNews || isLoggedIn) && (
           <NavLink
-            className={`nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}`}
+            className={({ isActive }) =>
+              `nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"} ${isActive ? "nav-link_active" : ""}`
+            }
             to="/saved-news"
           >
             {" "}
