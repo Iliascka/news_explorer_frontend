@@ -1,8 +1,7 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import logoutIconBlack from "../../assets/logoutIconBlack.svg";
 import logoutIconWhite from "../../assets/logoutIconWhite.svg";
-import { NavLink } from "react-router-dom";
 
 function Navigation({ isSavedNews, isLoggedIn, handleLoginModal }) {
   const location = useLocation();

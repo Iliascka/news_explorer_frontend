@@ -12,11 +12,11 @@ import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SuccessModal from "../SuccessModal/SuccessModal";
-import Preloader from "../Preloader/Preloader";
+// import Preloader from "../Preloader/Preloader";
 
 function App() {
   // States
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState(articlesData);
   const [activeModal, setActiveModal] = useState("");
   const [searchData, setSearchData] = useState(false);
@@ -49,7 +49,7 @@ function App() {
                   <>
                     {" "}
                     <Hero handleLoginModal={handleLoginModal} />
-                    <Preloader searchData={searchData} />
+                    {/* <Preloader searchData={searchData} /> */}
                     <Main />
                     <About />
                   </>

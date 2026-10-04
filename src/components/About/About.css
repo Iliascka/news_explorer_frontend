@@ -19,6 +19,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  gap: 20px;
 }
 
 .about__placeholder-text {

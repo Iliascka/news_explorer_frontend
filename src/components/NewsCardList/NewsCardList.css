@@ -1,7 +1,11 @@
 .article {
+  background-color: rgba(245, 246, 247, 1);
+}
+
+.article__content {
   max-width: 1232px;
-  margin: auto;
   padding: 80px 0;
+  margin: 0 auto;
 }
 
 .article__list {
@@ -21,8 +25,7 @@
   padding: 20px 99px;
   border-radius: 80px;
   display: block;
-  margin: auto;
-  background-color: rgba(232, 232, 232, 1);
+ rgba(232, 232, 232, 1);
   border: none;
   font-family: "Roboto";
   font-weight: 500;
@@ -30,4 +33,38 @@
   height: 64px;
   color: rgba(26, 27, 34, 1);
   margin: 64px auto 0;
+}
+
+.article__button-active {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+@media screen and (max-width: 1226px) {
+  .article__content {
+    max-width: 816px;
+    margin: 0 auto;
+    padding: 80px 0;
+  }
+
+  .article__list {
+  gap: 8px;
+}
+
+  .article__button {
+  margin: 32px auto 0;
+}
+
+}
+@media screen and (max-width: 810px) {
+  .article__content {
+    max-width: 688px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+  .article__title {
+  font-size: 30px;
+  margin: 0 0 32px 0;
+}
+
+
 }
