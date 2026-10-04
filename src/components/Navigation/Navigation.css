@@ -52,3 +52,10 @@
   width: 24px;
   height: 24px;
 }
+
+@media screen and (max-width: 814px) {
+  .nav__list {
+    font-size: 16px;
+    gap: 26px;
+  }
+}

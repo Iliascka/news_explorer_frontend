@@ -4,7 +4,7 @@ import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
 function NewsCardList({ articles, title, button }) {
-  const [visibleCount, setVisibleCount] = useState(5);
+  const [visibleCount, setVisibleCount] = useState(3);
   const { isLoggedIn } = useContext(CurrentUserContext);
   let buttonText = "";
 
