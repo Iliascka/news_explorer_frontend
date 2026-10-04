@@ -24,3 +24,23 @@
   line-height: 24px;
   margin: 0;
 }
+
+@media screen and (max-width: 916px) {
+  .hero-content {
+    max-width: 452px;
+  }
+  .hero-content__container {
+    margin: 0 0 48px 0;
+  }
+
+  .hero-content__title {
+    font-size: 36px;
+    line-height: 40px;
+    margin: 0 0 16px 0;
+    max-width: 385px;
+  }
+
+  .hero-content__body {
+    max-width: 452px;
+  }
+}

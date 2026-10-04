@@ -41,7 +41,7 @@ ol {
   border-bottom: 3px solid currentColor;
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 814px) {
   .nav-link_active::after {
     content: "";
     position: absolute;

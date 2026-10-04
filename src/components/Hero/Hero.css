@@ -12,3 +12,9 @@
   inset: 0;
   background-color: rgba(0, 0, 0, 0.45);
 }
+
+@media screen and (max-width: 916px) {
+  .hero {
+    height: 400px;
+  }
+}
