@@ -9,7 +9,9 @@ function Header({ handleLoginModal }) {
   const isSavedNews = location.pathname === "/saved-news";
 
   return (
-    <header className={`header ${isSavedNews ? "header_saved-news" : ""}`}>
+    <header
+      className={`header ${isSavedNews ? "header_saved-news" : "header_main"}`}
+    >
       <NavLink
         className={`nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}`}
         to="/"
