@@ -1,9 +1,12 @@
 import { useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
 function NewsCardList({ articles, title, button }) {
+  const location = useLocation();
+  const isSavedNews = location.pathname === "/saved-news";
   const [visibleCount, setVisibleCount] = useState(3);
   const { isLoggedIn } = useContext(CurrentUserContext);
   let buttonText = "";
@@ -23,7 +26,9 @@ function NewsCardList({ articles, title, button }) {
 
   return (
     <div className="article">
-      <div className="article__content">
+      <div
+        className={`article__content ${isSavedNews ? "article__content_saved-news" : ""}`}
+      >
         {title && <h2 className="article__title">Search results</h2>}
         <ul className="article__list">
           {articles.slice(0, visibleCount).map((item) => {

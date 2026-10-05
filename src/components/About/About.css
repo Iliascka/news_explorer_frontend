@@ -94,4 +94,11 @@
     width: 232px;
     height: 232px;
   }
+
+  .about__content {
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    gap: 32px;
+  }
 }

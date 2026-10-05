@@ -39,6 +39,7 @@
     flex-direction: column;
     padding: 24px 40px 32px;
     background-color: rgba(255, 255, 255, 1);
+    gap: 16px;
   }
 
   .savedNews__header {
