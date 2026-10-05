@@ -43,6 +43,7 @@
   background-color: rgba(255, 255, 255, 1);
 }
 
+/* Intermediate - card layout */
 @media screen and (max-width: 1230px) {
   .article__list {
     gap: 16px;
@@ -56,7 +57,9 @@
     margin: 32px auto 0;
   }
 }
-@media screen and (max-width: 814px) {
+
+/* Tablet */
+@media screen and (max-width: 819px) {
   .article__list {
     gap: 8px;
   }
@@ -74,3 +77,16 @@
     margin: 0 0 32px 0;
   }
 }
+
+/* Intermediate - tablet to mobile */
+@media screen and (max-width: 680px) {
+  .article__content {
+    max-width: 456px;
+  }
+}
+
+/* Mobile */
+/* @media screen and (max-width: 510px) {
+  .article__content {
+  }
+} */

@@ -25,6 +25,7 @@
   margin: 0;
 }
 
+/* Tablet */
 @media screen and (max-width: 916px) {
   .hero-content {
     max-width: 452px;
@@ -42,5 +43,15 @@
 
   .hero-content__body {
     max-width: 452px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 510px) {
+  .hero-content {
+    max-width: 288px;
+  }
+  .hero-content__container {
+    margin: 0 0 122px 0;
   }
 }

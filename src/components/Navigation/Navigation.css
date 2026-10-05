@@ -59,3 +59,9 @@
     gap: 26px;
   }
 }
+
+@media screen and (max-width: 510px) {
+  .nav {
+    display: none;
+  }
+}

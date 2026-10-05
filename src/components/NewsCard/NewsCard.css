@@ -138,6 +138,7 @@
   }
 }
 
+/* Tablet */
 @media screen and (max-width: 819px) {
   .card {
     width: 224px;
@@ -170,3 +171,11 @@
     right: 8px;
   }
 }
+
+/* Mobile */
+/* @media screen and (max-width: 510px) {
+  .card {
+    width: 224px;
+    height: 420px;
+  }
+} */
