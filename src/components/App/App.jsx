@@ -16,7 +16,7 @@ import SuccessModal from "../SuccessModal/SuccessModal";
 
 function App() {
   // States
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [articles, setArticles] = useState(articlesData);
   const [activeModal, setActiveModal] = useState("");
   const [searchData, setSearchData] = useState(false);

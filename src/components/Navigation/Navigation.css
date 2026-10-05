@@ -1,6 +1,12 @@
+.nav {
+  display: flex;
+  gap: 76px;
+}
+
 .nav__list {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 76px;
   list-style: none;
   margin: 0;
@@ -9,18 +15,34 @@
   font-size: 18px;
 }
 
+.nav_mobile-menu {
+  background-color: rgba(26, 27, 34, 1);
+  height: 174px;
+  width: 100%;
+  position: absolute;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
 .nav__list_logged-out {
   gap: 42px;
 }
 
 .nav__button {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 15px;
   border-radius: 100px;
   border: 1px solid;
   background-color: transparent;
-  font: inherit;
   padding: 12px 12px 12px 19px;
 }
 
@@ -63,5 +85,33 @@
 @media screen and (max-width: 510px) {
   .nav {
     display: none;
+    gap: 22px;
+    padding: 16px 16px 24px;
+  }
+
+  .nav__button {
+    width: 288px;
+    margin: auto;
+    padding: 16px 0;
+  }
+
+  .nav__button_logged-out {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 18px;
+    width: 288px;
+    margin: auto;
+    padding: 16px 0;
+  }
+
+  .nav_mobile-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav__list {
+    font-size: 18px;
+    margin: 22px 0 0 0;
   }
 }
