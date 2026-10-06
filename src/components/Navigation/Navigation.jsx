@@ -22,7 +22,7 @@ function Navigation({
         <NavLink
           className={({ isActive }) =>
             `nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}
-           ${isActive ? "nav-link_active" : ""}`
+             ${isActive ? "nav-link_active" : ""}`
           }
           to="/"
         >
@@ -40,7 +40,6 @@ function Navigation({
           </NavLink>
         )}
       </ul>
-
       {isSavedNews || isLoggedIn ? (
         <button
           type="button"

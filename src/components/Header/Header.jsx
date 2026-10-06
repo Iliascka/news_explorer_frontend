@@ -42,6 +42,7 @@ function Header({ handleLoginModal }) {
         isSavedNews={isSavedNews}
         isMobileMenu={isMobileMenu}
       />
+      {isMobileMenu && <div className="header__overlay"></div>}
     </header>
   );
 }
