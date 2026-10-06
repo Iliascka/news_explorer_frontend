@@ -41,7 +41,7 @@ ol {
   border-bottom: 3px solid currentColor;
 }
 
-@media screen and (max-width: 814px) {
+@media screen and (max-width: 916px) {
   .nav-link_active::after {
     left: -5px;
     right: -5px;
