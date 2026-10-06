@@ -86,7 +86,7 @@
 @media screen and (max-width: 900px) {
   .about__author {
     max-width: 424px;
-    color: rgba(26, 27, 34, 1);
+
     margin: 0 0 56px 0;
   }
 
@@ -96,9 +96,33 @@
   }
 
   .about__content {
-    display: flex;
-    align-items: top;
-    justify-content: center;
     gap: 32px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 510px) {
+  .about {
+    padding: 32px 16px 128px;
+  }
+
+  .about__image {
+    width: 272px;
+    height: 272px;
+  }
+
+  .about__placeholder-text {
+    font-size: 16px;
+  }
+
+  .about__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .about__author {
+    gap: 16px;
   }
 }
