@@ -11,7 +11,8 @@ function Navigation({
 }) {
   const location = useLocation();
   const buttonMain = location.pathname === "/";
-  const buttonIcon = buttonMain ? logoutIconWhite : logoutIconBlack;
+  const buttonIcon =
+    buttonMain || isMobileMenu ? logoutIconWhite : logoutIconBlack;
 
   return (
     <nav
@@ -21,7 +22,7 @@ function Navigation({
         {" "}
         <NavLink
           className={({ isActive }) =>
-            `nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}
+            `nav-link ${isSavedNews && !isMobileMenu ? "nav-link_saved-news " : "nav-link_main"}
              ${isActive ? "nav-link_active" : ""}`
           }
           to="/"
@@ -31,7 +32,7 @@ function Navigation({
         {(isSavedNews || isLoggedIn) && (
           <NavLink
             className={({ isActive }) =>
-              `nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"} ${isActive ? "nav-link_active" : ""}`
+              `nav-link ${isSavedNews && !isMobileMenu ? "nav-link_saved-news " : "nav-link_main"} ${isActive ? "nav-link_active" : ""}`
             }
             to="/saved-news"
           >
@@ -43,7 +44,7 @@ function Navigation({
       {isSavedNews || isLoggedIn ? (
         <button
           type="button"
-          className={`nav__button ${buttonMain ? "nav__button_main" : ""}`}
+          className={`nav__button ${buttonMain || isMobileMenu ? "nav__button_main" : ""}`}
         >
           Ilias <img className="nav__button-icon" src={buttonIcon} alt="" />
         </button>

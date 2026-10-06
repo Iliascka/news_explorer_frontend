@@ -5,11 +5,13 @@ import { useLocation, NavLink } from "react-router-dom";
 import "./Header.css";
 import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
+import menuIconBlack from "../../assets/menu-black.svg";
 function Header({ handleLoginModal }) {
   const location = useLocation();
   const { isLoggedIn } = useContext(CurrentUserContext);
   const isSavedNews = location.pathname === "/saved-news";
   const [isMobileMenu, setIsMobileMenu] = useState(false);
+  const menuIconColor = isSavedNews ? menuIconBlack : menuIcon;
 
   const handleMobileMenu = () => {
     setIsMobileMenu((prev) => !prev);
@@ -20,7 +22,9 @@ function Header({ handleLoginModal }) {
       className={`header ${isSavedNews ? "header_saved-news" : "header_main"} ${isMobileMenu ? "header_mobile-nav" : ""}`}
     >
       <NavLink
-        className={`nav-link ${isSavedNews ? "nav-link_saved-news" : "nav-link_main"}`}
+        className={`nav-link ${
+          isSavedNews && !isMobileMenu ? "nav-link_saved-news" : "nav-link_main"
+        }`}
         to="/"
       >
         <p className="header__logo">NewsExplorer</p>
@@ -31,7 +35,7 @@ function Header({ handleLoginModal }) {
         className="header__menu-btn"
       >
         <img
-          src={!isMobileMenu ? menuIcon : closeIcon}
+          src={!isMobileMenu ? menuIconColor : closeIcon}
           alt="menuIcon"
           className="header__menu-icon"
         />
