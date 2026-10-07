@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SuccessModal from "../SuccessModal/SuccessModal";
+import { getNewsApi } from "../../utils/NewsApi";
 
 function App() {
   // States
@@ -19,6 +20,15 @@ function App() {
   const [articles, setArticles] = useState(articlesData);
   const [activeModal, setActiveModal] = useState("");
   const [searchData, setSearchData] = useState(false);
+
+  const handleSearch = async () => {
+    try {
+      const data = await getNewsApi("nvidia");
+      console.log(data);
+    } catch (err) {
+      console.error("Search failed:", err);
+    }
+  };
 
   const handleSignUpModal = () => {
     setActiveModal("signUp");
