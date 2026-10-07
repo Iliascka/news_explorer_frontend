@@ -37,7 +37,7 @@
 
 @media screen and (max-width: 916px) {
   .header {
-    padding: 23px 40px 19px;
+    padding: 23px 24px 19px;
     height: 66px;
   }
 
@@ -47,10 +47,14 @@
 }
 
 /* Mobile */
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 540px) {
   .header {
     padding: 16px;
     height: 56px;
+  }
+
+  .header__menu-btn {
+    display: flex;
   }
 
   .header_mobile-nav {
@@ -66,17 +70,11 @@
     font-family: "Roboto Slab";
     font-weight: 700;
     font-size: 16px;
-    position: relative;
-  }
-
-  .header__menu-btn {
-    display: flex;
   }
 
   .header__menu-icon {
     width: 24px;
     height: 24px;
-    position: relative;
   }
   .header__overlay {
     position: fixed;

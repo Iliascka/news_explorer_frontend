@@ -48,7 +48,7 @@ function Header({ isOpen, onClose, handleLoginModal }) {
         isLoggedIn={isLoggedIn}
         isSavedNews={isSavedNews}
         isMobileMenu={isMobileMenu}
-        handleMobileMenu={handleMobileMenu}
+        setIsMobileMenu={setIsMobileMenu}
       />
       {isMobileMenu && <div className="header__overlay"></div>}
     </header>

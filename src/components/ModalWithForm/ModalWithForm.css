@@ -134,16 +134,26 @@
   border-bottom-color: rgba(255, 77, 77, 1);
 }
 
+@media screen and (max-width: 540px) {
+  .modal__content {
+    /* max-width: 330px; */
+    padding: 16px 16px 28px;
+  }
+
+  .modal__close {
+    top: -48px;
+    right: 14px;
+  }
+}
+
 /* Mobile */
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 400px) {
   .modal {
     top: 56px;
-    z-index: 8;
-    /* align-items: flex-start; */
+    z-index: 4;
   }
 
   .modal__content {
-    max-width: 330px;
     padding: 16px 16px 28px;
     min-height: 100%;
     border-radius: 16px 16px 0 0;
@@ -151,14 +161,5 @@
 
   .modal__secondary-button {
     font-size: 14px;
-  }
-
-  .modal__close {
-    top: -48px;
-    right: 16px;
-  }
-  .modal__close-icon {
-    width: 24px;
-    height: 24px;
   }
 }

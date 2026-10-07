@@ -8,7 +8,7 @@ function Navigation({
   isLoggedIn,
   handleLoginModal,
   isMobileMenu,
-  handleMobileMenu,
+  setIsMobileMenu,
 }) {
   const location = useLocation();
   const buttonMain = location.pathname === "/";
@@ -17,7 +17,7 @@ function Navigation({
 
   const handleSignInClick = () => {
     handleLoginModal();
-    handleMobileMenu(false);
+    setIsMobileMenu(false);
   };
   return (
     <nav

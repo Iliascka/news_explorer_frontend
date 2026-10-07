@@ -79,7 +79,7 @@
 }
 
 /* Intermediate - tablet to mobile */
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 683px) {
   .article__content {
     max-width: 456px;
   }
