@@ -106,6 +106,8 @@
   border: none;
   color: rgba(47, 113, 229, 1);
   cursor: pointer;
+  font-family: "Inter";
+  font-weight: 400;
 }
 
 .modal__error {
@@ -125,8 +127,38 @@
   letter-spacing: 0%;
   text-align: center;
   color: rgba(255, 0, 0, 1);
+  display: none;
 }
 
 .modal__input_type_error {
   border-bottom-color: rgba(255, 77, 77, 1);
+}
+
+/* Mobile */
+@media screen and (max-width: 510px) {
+  .modal {
+    top: 56px;
+    z-index: 8;
+    /* align-items: flex-start; */
+  }
+
+  .modal__content {
+    max-width: 330px;
+    padding: 16px 16px 28px;
+    min-height: 100%;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .modal__secondary-button {
+    font-size: 14px;
+  }
+
+  .modal__close {
+    top: -48px;
+    right: 16px;
+  }
+  .modal__close-icon {
+    width: 24px;
+    height: 24px;
+  }
 }

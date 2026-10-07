@@ -6,7 +6,7 @@ import "./Header.css";
 import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
 import menuIconBlack from "../../assets/menu-black.svg";
-function Header({ handleLoginModal }) {
+function Header({ isOpen, onClose, handleLoginModal }) {
   const location = useLocation();
   const { isLoggedIn } = useContext(CurrentUserContext);
   const isSavedNews = location.pathname === "/saved-news";
@@ -22,6 +22,7 @@ function Header({ handleLoginModal }) {
       className={`header ${isSavedNews ? "header_saved-news" : "header_main"} ${isMobileMenu ? "header_mobile-nav header_saved-news_border" : ""}`}
     >
       <NavLink
+        onClick={onClose}
         className={`nav-link ${
           isSavedNews && !isMobileMenu ? "nav-link_saved-news" : "nav-link_main"
         }`}
@@ -29,22 +30,25 @@ function Header({ handleLoginModal }) {
       >
         <p className="header__logo">NewsExplorer</p>
       </NavLink>
-      <button
-        onClick={handleMobileMenu}
-        type="button"
-        className="header__menu-btn"
-      >
-        <img
-          src={!isMobileMenu ? menuIconColor : closeIcon}
-          alt="menuIcon"
-          className="header__menu-icon"
-        />
-      </button>
+      {!isOpen && (
+        <button
+          onClick={handleMobileMenu}
+          type="button"
+          className="header__menu-btn"
+        >
+          <img
+            src={!isMobileMenu ? menuIconColor : closeIcon}
+            alt="menuIcon"
+            className="header__menu-icon"
+          />
+        </button>
+      )}
       <Navigation
         handleLoginModal={handleLoginModal}
         isLoggedIn={isLoggedIn}
         isSavedNews={isSavedNews}
         isMobileMenu={isMobileMenu}
+        handleMobileMenu={handleMobileMenu}
       />
       {isMobileMenu && <div className="header__overlay"></div>}
     </header>

@@ -8,12 +8,17 @@ function Navigation({
   isLoggedIn,
   handleLoginModal,
   isMobileMenu,
+  handleMobileMenu,
 }) {
   const location = useLocation();
   const buttonMain = location.pathname === "/";
   const buttonIcon =
     buttonMain || isMobileMenu ? logoutIconWhite : logoutIconBlack;
 
+  const handleSignInClick = () => {
+    handleLoginModal();
+    handleMobileMenu(false);
+  };
   return (
     <nav
       className={`nav ${!isLoggedIn ? "nav__list_logged-out" : ""} ${isMobileMenu ? "nav_mobile-menu" : ""}`}
@@ -50,7 +55,7 @@ function Navigation({
         </button>
       ) : (
         <button
-          onClick={handleLoginModal}
+          onClick={handleSignInClick}
           type="button"
           className="nav__button_logged-out"
         >
