@@ -19,7 +19,7 @@ function Header({ handleLoginModal }) {
 
   return (
     <header
-      className={`header ${isSavedNews ? "header_saved-news" : "header_main"} ${isMobileMenu ? "header_mobile-nav" : ""}`}
+      className={`header ${isSavedNews ? "header_saved-news" : "header_main"} ${isMobileMenu ? "header_mobile-nav header_saved-news_border" : ""}`}
     >
       <NavLink
         className={`nav-link ${

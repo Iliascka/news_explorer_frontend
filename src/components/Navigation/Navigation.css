@@ -27,6 +27,7 @@
   align-items: flex-start;
   gap: 22px;
   padding: 16px 16px 24px;
+  border-radius: 0 0 16px 16px;
   display: none;
 }
 

@@ -115,6 +115,11 @@
     font-size: 16px;
   }
 
+  .about__placeholder-icon {
+    width: 58px;
+    height: 58px;
+  }
+
   .about__content {
     display: flex;
     flex-direction: column;
