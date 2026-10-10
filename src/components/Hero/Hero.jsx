@@ -1,15 +1,16 @@
 import HeroContent from "../HeroContent/HeroContent";
 import Header from "../Header/Header";
 import "./Hero.css";
-function Hero({ isOpen, onClose, handleLoginModal }) {
+function Hero({ isOpen, onClose, handleLoginModal, handleSearch }) {
   return (
     <div className="hero">
       <Header
         isOpen={isOpen}
         onClose={onClose}
         handleLoginModal={handleLoginModal}
+        handleSearch={handleSearch}
       />
-      <HeroContent />
+      <HeroContent handleSearch={handleSearch} />
     </div>
   );
 }

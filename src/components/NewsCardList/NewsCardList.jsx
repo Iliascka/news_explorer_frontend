@@ -36,9 +36,9 @@ function NewsCardList({ articles, title, button }) {
               <NewsCard
                 key={item.id}
                 tag={item.tag}
-                date={item.date}
+                date={item.publishedAt}
                 title={item.title}
-                paragraph={item.paragraph}
+                paragraph={item.description}
                 image={item.image}
                 source={item.source}
               />

@@ -12,25 +12,34 @@ import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SuccessModal from "../SuccessModal/SuccessModal";
+// import Preloader from "../Preloader/Preloader";
+import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 
 function App() {
   // States
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [articles, setArticles] = useState(articlesData);
+  const [articles, setArticles] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [searchData, setSearchData] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearch = async () => {
+  const handleSearch = async (keyword) => {
+    if (!keyword.trim()) return;
+
+    setSearchData(true);
+
     try {
-      const data = await getNewsApi("nvidia");
-      console.log(data);
+      setIsLoading(true);
+      const data = await getNewsApi(keyword);
+      if (data.articles.length === 0) {
+      }
     } catch (err) {
       console.error("Search failed", err);
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  handleSearch();
 
   const handleSignUpModal = () => {
     setActiveModal("signUp");
@@ -63,8 +72,10 @@ function App() {
                       onClose={closeModal}
                       isOpen={activeModal}
                       handleLoginModal={handleLoginModal}
+                      handleSearch={handleSearch}
                     />
                     {/* <Preloader searchData={searchData} /> */}
+                    <NothingFound />
                     <Main />
                     <About />
                   </>
