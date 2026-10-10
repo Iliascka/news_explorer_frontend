@@ -5,7 +5,11 @@ import "./Main.css";
 
 function Main() {
   const { articles } = useContext(ArticlesContext);
-  return <>{<NewsCardList articles={articles} title button />}</>;
+  return (
+    <>
+      {articles.length > 0 && <NewsCardList articles={articles} title button />}
+    </>
+  );
 }
 
 export default Main;

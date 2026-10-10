@@ -1,6 +1,6 @@
 import notFoundImg from "../../assets/not-found-icon.svg";
 import "./NothingFound.css";
-function NothingFound() {
+function NothingFound({ title, paragraph }) {
   return (
     <>
       <section className="circle-preloader_not-found">
@@ -11,11 +11,9 @@ function NothingFound() {
             className="circle-preloader__not-found-img"
           />
 
-          <span className="circle-preloader__not-found-title">
-            Nothing found
-          </span>
+          <span className="circle-preloader__not-found-title">{title}</span>
           <span className="circle-preloader__not-found-description">
-            Sorry, but nothing matched your search terms.
+            {paragraph}
           </span>
         </div>
       </section>

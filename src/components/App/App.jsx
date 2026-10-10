@@ -12,7 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SuccessModal from "../SuccessModal/SuccessModal";
-// import Preloader from "../Preloader/Preloader";
+import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 
@@ -23,18 +23,24 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [searchData, setSearchData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [noArticles, setNoArticles] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(true);
 
   const handleSearch = async (keyword) => {
+    setNoArticles(false);
+    setErrorMessage(false);
     if (!keyword.trim()) return;
-
     setSearchData(true);
-
     try {
       setIsLoading(true);
       const data = await getNewsApi(keyword);
+
       if (data.articles.length === 0) {
+        setNoArticles(true);
       }
+      setArticles(data.articles);
     } catch (err) {
+      setErrorMessage(true);
       console.error("Search failed", err);
     } finally {
       setIsLoading(false);
@@ -74,8 +80,23 @@ function App() {
                       handleLoginModal={handleLoginModal}
                       handleSearch={handleSearch}
                     />
-                    {/* <Preloader searchData={searchData} /> */}
-                    <NothingFound />
+                    {isLoading && <Preloader />}
+                    {noArticles && (
+                      <NothingFound
+                        title={"Nothing Found"}
+                        paragraph={
+                          "Sorry, but nothing matched your search terms."
+                        }
+                      />
+                    )}
+                    {errorMessage && (
+                      <NothingFound
+                        title={"Something went wrong"}
+                        paragraph={
+                          "Sorry, something went wrong during the request. Please try again later."
+                        }
+                      />
+                    )}
                     <Main />
                     <About />
                   </>
