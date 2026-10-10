@@ -21,7 +21,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState([]);
   const [activeModal, setActiveModal] = useState("");
-  const [searchData, setSearchData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [noArticles, setNoArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(true);
@@ -30,7 +29,7 @@ function App() {
     setNoArticles(false);
     setErrorMessage(false);
     if (!keyword.trim()) return;
-    setSearchData(true);
+
     try {
       setIsLoading(true);
       const data = await getNewsApi(keyword);

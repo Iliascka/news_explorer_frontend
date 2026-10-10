@@ -34,13 +34,13 @@ function NewsCardList({ articles, title, button }) {
           {articles.slice(0, visibleCount).map((item) => {
             return (
               <NewsCard
-                key={item.id}
-                tag={item.tag}
+                key={item.url}
+                // tag={item.tag}
                 date={item.publishedAt}
                 title={item.title}
                 paragraph={item.description}
-                image={item.image}
-                source={item.source}
+                image={item.urlToImage}
+                source={item.source.name}
               />
             );
           })}
