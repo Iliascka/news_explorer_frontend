@@ -26,9 +26,11 @@ function App() {
       const data = await getNewsApi("nvidia");
       console.log(data);
     } catch (err) {
-      console.error("Search failed:", err);
+      console.error("Search failed", err);
     }
   };
+
+  handleSearch();
 
   const handleSignUpModal = () => {
     setActiveModal("signUp");
