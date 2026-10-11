@@ -1,8 +1,10 @@
 import "./SearchForm.css";
-import { useCallback, useState } from "react";
+import { useContext } from "react";
+import { KeywordContext } from "../../contexts/KeywordContext";
 
 function SearchForm({ handleSearch }) {
-  const [keyword, setKeyword] = useState("");
+  const { keyword, setKeyword } = useContext(KeywordContext);
+
   const handleChange = (evt) => {
     setKeyword(evt.target.value);
   };

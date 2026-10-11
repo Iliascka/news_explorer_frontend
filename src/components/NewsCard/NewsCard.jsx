@@ -2,9 +2,11 @@ import "./NewsCard.css";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { KeywordContext } from "../../contexts/KeywordContext";
 
-function NewsCard({ tag, date, title, paragraph, image, source }) {
+function NewsCard({ labelTag, date, title, paragraph, image, source }) {
   const { isLoggedIn } = useContext(CurrentUserContext);
+  const { keyword } = useContext(KeywordContext);
   const location = useLocation();
   const isSavedPage = location.pathname === "/saved-news";
   const toolTipText = isSavedPage
@@ -21,7 +23,7 @@ function NewsCard({ tag, date, title, paragraph, image, source }) {
   return (
     <li className="card">
       <img src={image} alt="cardImg" className="card__image" />
-      {isLoggedIn && <span className="card__keyword">{tag}</span>}
+      {isLoggedIn && <span className="card__keyword">{labelTag}</span>}
       <button
         type="button"
         className={`card__save-button ${buttonType}`}

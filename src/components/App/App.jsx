@@ -5,9 +5,10 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
-import { articlesData } from "../../utils/articleData";
+// import { articlesData } from "../../utils/articleData";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
+import { KeywordContext } from "../../contexts/KeywordContext";
 import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -18,12 +19,14 @@ import { getNewsApi } from "../../utils/NewsApi";
 
 function App() {
   // States
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [articles, setArticles] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [noArticles, setNoArticles] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const [labelTag, setLabelTag] = useState("");
 
   const handleSearch = async (keyword) => {
     setNoArticles(false);
@@ -38,6 +41,7 @@ function App() {
         setNoArticles(true);
       }
       setArticles(data.articles);
+      setLabelTag(keyword);
     } catch (err) {
       setErrorMessage(true);
       console.error("Search failed", err);
@@ -67,42 +71,44 @@ function App() {
       <div className="page">
         <CurrentUserContext.Provider value={{ isLoggedIn }}>
           <ArticlesContext.Provider value={{ articles, setArticles }}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    {" "}
-                    <Hero
-                      onClose={closeModal}
-                      isOpen={activeModal}
-                      handleLoginModal={handleLoginModal}
-                      handleSearch={handleSearch}
-                    />
-                    {isLoading && <Preloader />}
-                    {noArticles && (
-                      <NothingFound
-                        title={"Nothing Found"}
-                        paragraph={
-                          "Sorry, but nothing matched your search terms."
-                        }
+            <KeywordContext.Provider value={{ keyword, setKeyword }}>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      {" "}
+                      <Hero
+                        onClose={closeModal}
+                        isOpen={activeModal}
+                        handleLoginModal={handleLoginModal}
+                        handleSearch={handleSearch}
                       />
-                    )}
-                    {errorMessage && (
-                      <NothingFound
-                        title={"Something went wrong"}
-                        paragraph={
-                          "Sorry, something went wrong during the request. Please try again later."
-                        }
-                      />
-                    )}
-                    <Main />
-                    <About />
-                  </>
-                }
-              ></Route>
-              <Route path="/saved-news" element={<SavedNews />} />
-            </Routes>
+                      {isLoading && <Preloader />}
+                      {noArticles && (
+                        <NothingFound
+                          title={"Nothing Found"}
+                          paragraph={
+                            "Sorry, but nothing matched your search terms."
+                          }
+                        />
+                      )}
+                      {errorMessage && (
+                        <NothingFound
+                          title={"Something went wrong"}
+                          paragraph={
+                            "Sorry, something went wrong during the request. Please try again later."
+                          }
+                        />
+                      )}
+                      <Main labelTag={labelTag} />
+                      <About />
+                    </>
+                  }
+                ></Route>
+                <Route path="/saved-news" element={<SavedNews />} />
+              </Routes>
+            </KeywordContext.Provider>
           </ArticlesContext.Provider>
         </CurrentUserContext.Provider>
         <RegisterModal

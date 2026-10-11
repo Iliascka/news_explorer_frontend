@@ -3,11 +3,13 @@ import { ArticlesContext } from "../../contexts/ArticlesContext";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import "./Main.css";
 
-function Main() {
+function Main({ labelTag }) {
   const { articles } = useContext(ArticlesContext);
   return (
     <>
-      {articles.length > 0 && <NewsCardList articles={articles} title button />}
+      {articles.length > 0 && (
+        <NewsCardList labelTag={labelTag} articles={articles} title button />
+      )}
     </>
   );
 }
