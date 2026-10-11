@@ -3,14 +3,13 @@ import useModalClose from "../../hooks/useModalClose";
 import { useMemo } from "react";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
-function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
+function LoginModal({ handleLogin, isOpen, onClose, onSecondaryButtonClick }) {
   const { handleOverlayClick } = useModalClose(isOpen, onClose);
 
   const defaultValues = useMemo(
     () => ({
       email: "",
       password: "",
-      name: "",
     }),
     [],
   );
@@ -26,12 +25,18 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
     isValid,
   } = useFormWithValidation(defaultValues);
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     setHasSubmitted(true);
     const { nextIsValid } = validateForm(values);
     if (!nextIsValid) {
       return;
+    }
+    try {
+      await handleLogin(values);
+      resetForm(defaultValues);
+    } catch (err) {
+      console.error(err);
     }
   }
 
@@ -44,6 +49,7 @@ function LoginModal({ isOpen, onClose, onSecondaryButtonClick }) {
 
   return (
     <ModalWithForm
+      onSubmit={handleSubmit}
       title="Sign in"
       buttonText="Sign in"
       secondaryButtonText="Sign up"

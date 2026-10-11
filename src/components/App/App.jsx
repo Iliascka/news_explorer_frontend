@@ -16,10 +16,11 @@ import SuccessModal from "../SuccessModal/SuccessModal";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
+import * as auth from "../../utils/auth";
 
 function App() {
   // States
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +28,24 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [labelTag, setLabelTag] = useState("");
+  const [token, setToken] = useState("");
+
+  const handleLogin = async ({ email, password }) => {
+    if (!email || !password) return;
+    try {
+      const data = await auth.authorize({ email, password });
+      if (!data.token) {
+        throw new Error(`Error: No token received`);
+      }
+      setToken(data.token);
+      setIsLoggedIn(true);
+      setActiveModal("");
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+  console.log(token);
 
   const handleSearch = async (keyword) => {
     setNoArticles(false);
@@ -119,6 +138,7 @@ function App() {
           handleSuccessModal={handleSuccessModal}
         />
         <LoginModal
+          handleLogin={handleLogin}
           isOpen={activeModal === "logIn"}
           onClose={closeModal}
           onSecondaryButtonClick={handleSignUpModal}
