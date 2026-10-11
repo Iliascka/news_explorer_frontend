@@ -4,7 +4,14 @@ import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { KeywordContext } from "../../contexts/KeywordContext";
 
-function NewsCard({ labelTag, date, title, paragraph, image, source }) {
+function NewsCard({
+  labelTag,
+  publishedAt,
+  title,
+  description,
+  urlToImage,
+  source,
+}) {
   const { isLoggedIn } = useContext(CurrentUserContext);
   const { keyword } = useContext(KeywordContext);
   const location = useLocation();
@@ -15,14 +22,14 @@ function NewsCard({ labelTag, date, title, paragraph, image, source }) {
   const buttonType = isSavedPage
     ? "card__button_type_delete"
     : "card__button_type_bookmark";
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+  const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
   return (
     <li className="card">
-      <img src={image} alt="cardImg" className="card__image" />
+      <img src={urlToImage} alt="cardImg" className="card__image" />
       {isLoggedIn && <span className="card__keyword">{labelTag}</span>}
       <button
         type="button"
@@ -33,7 +40,7 @@ function NewsCard({ labelTag, date, title, paragraph, image, source }) {
       <div className="card__content">
         <p className="card__header">{formattedDate}</p>
         <h2 className="card__title">{title}</h2>
-        <p className="card__description">{paragraph}</p>
+        <p className="card__description">{description}</p>
         <p className="card__footer">{source}</p>
       </div>
     </li>

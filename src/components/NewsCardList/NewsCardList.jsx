@@ -36,10 +36,10 @@ function NewsCardList({ labelTag, articles, title, button }) {
               <NewsCard
                 labelTag={labelTag}
                 key={item.url}
-                date={item.publishedAt}
+                publishedAt={item.publishedAt}
                 title={item.title}
-                paragraph={item.description}
-                image={item.urlToImage}
+                description={item.description}
+                urlToImage={item.urlToImage}
                 source={item.source.name}
               />
             );
