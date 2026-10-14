@@ -13,7 +13,7 @@ function NewsCard({
   source,
 }) {
   const { isLoggedIn } = useContext(CurrentUserContext);
-  const { keyword } = useContext(KeywordContext);
+
   const location = useLocation();
   const isSavedPage = location.pathname === "/saved-news";
   const toolTipText = isSavedPage
@@ -30,7 +30,9 @@ function NewsCard({
   return (
     <li className="card">
       <img src={urlToImage} alt="cardImg" className="card__image" />
-      {isLoggedIn && <span className="card__keyword">{labelTag}</span>}
+      {isLoggedIn && labelTag && (
+        <span className="card__keyword">{labelTag}</span>
+      )}
       <button
         type="button"
         className={`card__save-button ${buttonType}`}

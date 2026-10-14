@@ -5,7 +5,7 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
-// import { articlesData } from "../../utils/articleData";
+import { articlesData } from "../../utils/articleData";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 import { KeywordContext } from "../../contexts/KeywordContext";
@@ -17,6 +17,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
+import { getItems } from "../../utils/api";
 import { setToken, getToken, removeToken } from "../../utils//token";
 
 function App() {
@@ -29,6 +30,26 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [labelTag, setLabelTag] = useState("");
+
+  const getItemsData = async () => {
+    try {
+      const data = await getItems();
+      if (data.length === 0) {
+        return;
+      }
+      setArticles(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setArticles([]);
+      return;
+    }
+    getItemsData();
+  }, [isLoggedIn]);
 
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
