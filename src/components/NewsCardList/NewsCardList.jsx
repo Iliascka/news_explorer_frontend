@@ -4,7 +4,13 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ labelTag, articles, title, button }) {
+function NewsCardList({
+  labelTag,
+  articles,
+  title,
+  button,
+  handleSaveArticle,
+}) {
   const location = useLocation();
   const isSavedNews = location.pathname === "/saved-news";
   const [visibleCount, setVisibleCount] = useState(3);
@@ -34,6 +40,8 @@ function NewsCardList({ labelTag, articles, title, button }) {
           {articles.slice(0, visibleCount).map((item) => {
             return (
               <NewsCard
+                article={item}
+                handleSaveArticle={handleSaveArticle}
                 labelTag={labelTag}
                 key={item.url}
                 publishedAt={item.publishedAt}

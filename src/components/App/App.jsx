@@ -17,13 +17,14 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
-import { getItems } from "../../utils/api";
+import { getItems, saveArticle } from "../../utils/api";
 import { setToken, getToken, removeToken } from "../../utils//token";
 
 function App() {
   // States
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState([]);
+  const [savedArticles, setSavedArticles] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [noArticles, setNoArticles] = useState(false);
@@ -38,6 +39,18 @@ function App() {
         return;
       }
       setArticles(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleSaveArticle = async (article) => {
+    try {
+      if (!article) {
+        throw new Error("Error: No article found");
+      }
+      const newArticle = await saveArticle(article);
+      setSavedArticles((prev) => [newArticle, ...prev]);
     } catch (err) {
       console.error(err);
     }
@@ -126,7 +139,9 @@ function App() {
     <>
       <div className="page">
         <CurrentUserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-          <ArticlesContext.Provider value={{ articles, setArticles }}>
+          <ArticlesContext.Provider
+            value={{ articles, setArticles, savedArticles }}
+          >
             <KeywordContext.Provider value={{ keyword, setKeyword }}>
               <Routes>
                 <Route
@@ -157,7 +172,10 @@ function App() {
                           }
                         />
                       )}
-                      <Main labelTag={labelTag} />
+                      <Main
+                        labelTag={labelTag}
+                        handleSaveArticle={handleSaveArticle}
+                      />
                       <About />
                     </>
                   }
