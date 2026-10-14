@@ -1,11 +1,13 @@
 import { useLocation, NavLink } from "react-router-dom";
 import "./Navigation.css";
+import { removeToken, getToken } from "../../utils/token";
 import logoutIconBlack from "../../assets/logoutIconBlack.svg";
 import logoutIconWhite from "../../assets/logoutIconWhite.svg";
 
 function Navigation({
   isSavedNews,
   isLoggedIn,
+  setIsLoggedIn,
   handleLoginModal,
   isMobileMenu,
   setIsMobileMenu,
@@ -19,6 +21,13 @@ function Navigation({
     handleLoginModal();
     setIsMobileMenu(false);
   };
+
+  const handleSignOutClick = () => {
+    setIsLoggedIn(false);
+    setIsMobileMenu(false);
+    removeToken();
+  };
+
   return (
     <nav
       className={`nav ${!isLoggedIn ? "nav__list_logged-out" : ""} ${isMobileMenu ? "nav_mobile-menu" : ""}`}
@@ -48,6 +57,7 @@ function Navigation({
       </ul>
       {isSavedNews || isLoggedIn ? (
         <button
+          onClick={handleSignOutClick}
           type="button"
           className={`nav__button ${buttonMain || isMobileMenu ? "nav__button_main" : ""}`}
         >

@@ -59,7 +59,6 @@ function App() {
       removeToken();
     }
   };
-
   useEffect(() => {
     verifyToken();
   }, []);
@@ -105,7 +104,7 @@ function App() {
   return (
     <>
       <div className="page">
-        <CurrentUserContext.Provider value={{ isLoggedIn }}>
+        <CurrentUserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
           <ArticlesContext.Provider value={{ articles, setArticles }}>
             <KeywordContext.Provider value={{ keyword, setKeyword }}>
               <Routes>
