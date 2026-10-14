@@ -6,6 +6,9 @@ export const authorize = ({ email, password }) => {
 
 export const checkToken = (token) => {
   return new Promise((resolve, reject) => {
+    if(token !== "fake-token-123"){
+      throw new Error (`Error: Unothorize token`);
+    }
     resolve({
       data: { name: "Brian", email: "brianken@gmail.com", _id: "fake-id-123" },
     });

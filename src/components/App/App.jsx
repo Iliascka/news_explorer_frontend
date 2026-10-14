@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Hero from "../Hero/Hero";
 import About from "../About/About";
@@ -17,7 +17,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
-import { setToken, getToken } from "../../utils//token";
+import { setToken, getToken, removeToken } from "../../utils//token";
 
 function App() {
   // States
@@ -39,7 +39,6 @@ function App() {
       }
 
       setToken(data.token);
-
       setIsLoggedIn(true);
       setActiveModal("");
     } catch (err) {
@@ -47,6 +46,23 @@ function App() {
       throw err;
     }
   };
+
+  const verifyToken = async () => {
+    if (!getToken()) return;
+
+    try {
+      const data = await auth.checkToken(getToken());
+      setIsLoggedIn(true);
+    } catch (err) {
+      console.error(err);
+      setIsLoggedIn(false);
+      removeToken();
+    }
+  };
+
+  useEffect(() => {
+    verifyToken();
+  }, []);
 
   const handleSearch = async (keyword) => {
     setNoArticles(false);
