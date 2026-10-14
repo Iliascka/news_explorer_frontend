@@ -17,6 +17,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
+import { setToken, getToken } from "../../utils//token";
 
 function App() {
   // States
@@ -28,7 +29,6 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [labelTag, setLabelTag] = useState("");
-  const [token, setToken] = useState("");
 
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
@@ -37,7 +37,9 @@ function App() {
       if (!data.token) {
         throw new Error(`Error: No token received`);
       }
+
       setToken(data.token);
+
       setIsLoggedIn(true);
       setActiveModal("");
     } catch (err) {
@@ -45,7 +47,6 @@ function App() {
       throw err;
     }
   };
-  console.log(token);
 
   const handleSearch = async (keyword) => {
     setNoArticles(false);
