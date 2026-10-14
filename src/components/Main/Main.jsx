@@ -5,6 +5,7 @@ import "./Main.css";
 
 function Main({ labelTag, handleSaveArticle }) {
   const { articles } = useContext(ArticlesContext);
+
   return (
     <>
       {articles.length > 0 && (

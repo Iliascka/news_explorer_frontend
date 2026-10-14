@@ -10,6 +10,7 @@ function NewsCardList({
   title,
   button,
   handleSaveArticle,
+  handleDeleteArticle,
 }) {
   const location = useLocation();
   const isSavedNews = location.pathname === "/saved-news";
@@ -37,21 +38,24 @@ function NewsCardList({
       >
         {title && <h2 className="article__title">Search results</h2>}
         <ul className="article__list">
-          {articles.slice(0, visibleCount).map((item) => {
-            return (
-              <NewsCard
-                article={item}
-                handleSaveArticle={handleSaveArticle}
-                labelTag={labelTag}
-                key={item.url}
-                publishedAt={item.publishedAt}
-                title={item.title}
-                description={item.description}
-                urlToImage={item.urlToImage}
-                source={item.source.name}
-              />
-            );
-          })}
+          {(!isLoggedIn ? articles.slice(0, visibleCount) : articles).map(
+            (item) => {
+              return (
+                <NewsCard
+                  article={item}
+                  handleSaveArticle={handleSaveArticle}
+                  handleDeleteArticle={handleDeleteArticle}
+                  labelTag={labelTag}
+                  key={item.url}
+                  publishedAt={item.publishedAt}
+                  title={item.title}
+                  description={item.description}
+                  urlToImage={item.urlToImage}
+                  source={item.source.name}
+                />
+              );
+            },
+          )}
         </ul>
         {button && (
           <button

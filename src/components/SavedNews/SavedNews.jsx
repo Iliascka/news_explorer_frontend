@@ -4,7 +4,7 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 import { useContext } from "react";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 
-function SavedNews() {
+function SavedNews({ handleDeleteArticle }) {
   const { savedArticles } = useContext(ArticlesContext);
   return (
     <>
@@ -17,7 +17,12 @@ function SavedNews() {
           Yellowstone, and 2 other
         </p>
       </section>
-      <NewsCardList articles={savedArticles} title={false} button={false} />
+      <NewsCardList
+        handleDeleteArticle={handleDeleteArticle}
+        articles={savedArticles}
+        title={false}
+        button={false}
+      />
     </>
   );
 }

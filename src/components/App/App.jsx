@@ -17,7 +17,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
-import { getItems, saveArticle } from "../../utils/api";
+import { getItems, saveArticle, deleteArticle } from "../../utils/api";
 import { setToken, getToken, removeToken } from "../../utils//token";
 
 function App() {
@@ -51,6 +51,20 @@ function App() {
       }
       const newArticle = await saveArticle(article);
       setSavedArticles((prev) => [newArticle, ...prev]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDeleteArticle = async (article) => {
+    try {
+      if (!article) {
+        throw new Error("Failed to delete the article. Please try again");
+      }
+      const { message } = await deleteArticle(article);
+      const newArticles = savedArticles.filter((item) => item !== article);
+      alert(message);
+      setSavedArticles(newArticles);
     } catch (err) {
       console.error(err);
     }
@@ -180,7 +194,12 @@ function App() {
                     </>
                   }
                 ></Route>
-                <Route path="/saved-news" element={<SavedNews />} />
+                <Route
+                  path="/saved-news"
+                  element={
+                    <SavedNews handleDeleteArticle={handleDeleteArticle} />
+                  }
+                />
               </Routes>
             </KeywordContext.Provider>
           </ArticlesContext.Provider>

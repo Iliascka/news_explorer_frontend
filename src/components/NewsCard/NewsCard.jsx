@@ -11,12 +11,10 @@ function NewsCard({
   urlToImage,
   source,
   handleSaveArticle,
+  handleDeleteArticle,
   article,
 }) {
   const { isLoggedIn } = useContext(CurrentUserContext);
-  const handleSaveCard = () => {
-    handleSaveArticle(article);
-  };
   const location = useLocation();
   const isSavedPage = location.pathname === "/saved-news";
   const toolTipText = isSavedPage
@@ -25,11 +23,22 @@ function NewsCard({
   const buttonType = isSavedPage
     ? "card__button_type_delete"
     : "card__button_type_bookmark";
+
   const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
+  const handleSaveCard = () => {
+    handleSaveArticle(article);
+  };
+
+  const handleDeleteCard = () => {
+    handleDeleteArticle(article);
+  };
+
+  const handlerType = isSavedPage ? handleDeleteCard : handleSaveCard;
 
   return (
     <li className="card">
@@ -38,7 +47,7 @@ function NewsCard({
         <span className="card__keyword">{labelTag}</span>
       )}
       <button
-        onClick={handleSaveCard}
+        onClick={handlerType}
         type="button"
         className={`card__save-button ${buttonType}`}
       ></button>

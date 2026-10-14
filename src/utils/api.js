@@ -15,7 +15,7 @@ export function getItems() {
         },
       },
       {
-        _id: "65f738423js9347sdf9394",
+        _id: "65f738423js9347sdf9398",
         title: "Some news article",
         url: "https://www.yahoo.com/news/politics/articles/trump-gives-national-treasure-musk-193940175.html",
         urlToImage:
@@ -28,7 +28,7 @@ export function getItems() {
         },
       },
       {
-        _id: "65f738423js9347sdf9394",
+        _id: "65f738423js9347sdf9399",
         title: "Some news article",
         url: "https://stadt-bremerhaven.de/asus-proart-p14-und-p16-mit-nvidia-rtx-spark-starten-in-die-vorbestellung/",
         urlToImage:
