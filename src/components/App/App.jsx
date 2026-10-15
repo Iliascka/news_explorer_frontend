@@ -17,6 +17,7 @@ import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import { getItems, saveArticle, deleteArticle } from "../../utils/api";
 import { setToken, getToken, removeToken } from "../../utils//token";
 
@@ -199,7 +200,9 @@ function App() {
                 <Route
                   path="/saved-news"
                   element={
-                    <SavedNews handleDeleteArticle={handleDeleteArticle} />
+                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                      <SavedNews handleDeleteArticle={handleDeleteArticle} />
+                    </ProtectedRoute>
                   }
                 />
               </Routes>
