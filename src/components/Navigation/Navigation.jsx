@@ -1,4 +1,4 @@
-import { useLocation, NavLink } from "react-router-dom";
+import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import "./Navigation.css";
 import { removeToken, getToken } from "../../utils/token";
 import logoutIconBlack from "../../assets/logoutIconBlack.svg";
@@ -13,6 +13,7 @@ function Navigation({
   setIsMobileMenu,
 }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const buttonMain = location.pathname === "/";
   const buttonIcon =
     buttonMain || isMobileMenu ? logoutIconWhite : logoutIconBlack;
@@ -25,6 +26,7 @@ function Navigation({
   const handleSignOutClick = () => {
     setIsLoggedIn(false);
     setIsMobileMenu(false);
+    navigate("/");
     removeToken();
   };
 
