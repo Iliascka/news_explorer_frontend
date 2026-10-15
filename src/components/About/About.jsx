@@ -13,7 +13,7 @@ function About() {
           <p className="about__placeholder-text">
             Placeholder image.
             <br />
-            Put an image of yourself here.
+            Stage 2 is loading....
           </p>
         </div>
         <div className="about__author">

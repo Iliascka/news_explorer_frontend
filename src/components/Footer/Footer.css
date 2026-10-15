@@ -41,6 +41,12 @@
 .footer__social-icon {
   width: 24px;
   height: 24px;
+  transition: opacity 0.2s ease-in;
+}
+.footer__social-icon:hover {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 814px) {

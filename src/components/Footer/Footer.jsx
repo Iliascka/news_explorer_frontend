@@ -6,17 +6,26 @@ import { NavLink } from "react-router-dom";
 function Footer() {
   return (
     <section className="footer">
-      <p className="footer__info">© 2024 Supersite, Powered by News API</p>
+      <p className="footer__info">© 2026 Supersite, Powered by News API</p>
       <div className="footer__links">
         <ul className="footer__list">
-          <NavLink className="nav-link nav-link_saved-news" to="/">
-            <li className="footer__list-item">Home</li>
+          <NavLink className="nav-link" to="/">
+            <li className="footer__list-item  nav-link_saved-news">Home</li>
           </NavLink>
-          <li className="footer__list-item">TripleTen</li>
+          <NavLink
+            className="nav-link nav-link_saved-news"
+            to="https://tripleten.com"
+          >
+            <li className="footer__list-item">TripleTen</li>
+          </NavLink>
         </ul>
         <div className="footer__social-icons">
-          <img src={githubIcon} alt="" className="footer__social-icon" />
-          <img src={linkedinIcon} alt="" className="footer__social-icon" />
+          <NavLink className="nav-link" to="/">
+            <img src={githubIcon} alt="" className="footer__social-icon" />
+          </NavLink>
+          <NavLink className="nav-link" to="/">
+            <img src={linkedinIcon} alt="" className="footer__social-icon" />
+          </NavLink>
         </div>
       </div>
     </section>
