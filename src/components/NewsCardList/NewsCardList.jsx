@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { ArticlesContext } from "../../contexts/ArticlesContext";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
@@ -12,6 +13,7 @@ function NewsCardList({
   handleSaveArticle,
   handleDeleteArticle,
 }) {
+  const { savedArticles } = useContext(ArticlesContext);
   const location = useLocation();
   const isSavedNews = location.pathname === "/saved-news";
   const [visibleCount, setVisibleCount] = useState(3);
@@ -38,10 +40,14 @@ function NewsCardList({
       >
         {title && <h2 className="article__title">Search results</h2>}
         <ul className="article__list">
-          {(!isLoggedIn ? articles.slice(0, visibleCount) : articles).map(
+          {(!isSavedNews ? articles.slice(0, visibleCount) : articles).map(
             (item) => {
+              const isSaved = savedArticles.some(
+                (savedItem) => item.url === savedItem.url,
+              );
               return (
                 <NewsCard
+                  isSaved={isSaved}
                   article={item}
                   handleSaveArticle={handleSaveArticle}
                   handleDeleteArticle={handleDeleteArticle}
@@ -57,7 +63,7 @@ function NewsCardList({
             },
           )}
         </ul>
-        {button && (
+        {articles.length > 3 && button && (
           <button
             onClick={handleArticleList}
             type="button"

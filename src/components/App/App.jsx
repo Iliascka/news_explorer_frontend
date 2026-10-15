@@ -45,10 +45,12 @@ function App() {
   };
 
   const handleSaveArticle = async (article) => {
+    if (!isLoggedIn) return;
     try {
       if (!article) {
         throw new Error("Error: No article found");
       }
+
       const newArticle = await saveArticle(article);
       setSavedArticles((prev) => [newArticle, ...prev]);
     } catch (err) {

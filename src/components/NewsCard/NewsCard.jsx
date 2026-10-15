@@ -13,6 +13,7 @@ function NewsCard({
   handleSaveArticle,
   handleDeleteArticle,
   article,
+  isSaved,
 }) {
   const { isLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
@@ -29,7 +30,8 @@ function NewsCard({
     month: "long",
     day: "numeric",
   });
-
+  const bookmarkSaved =
+    isSaved && isLoggedIn ? "card__button_type_bookmark-clicked" : "";
   const handleSaveCard = () => {
     handleSaveArticle(article);
   };
@@ -49,7 +51,7 @@ function NewsCard({
       <button
         onClick={handlerType}
         type="button"
-        className={`card__save-button ${buttonType}`}
+        className={`card__save-button ${bookmarkSaved} ${buttonType}`}
       ></button>
       {!isLoggedIn && <span className="card__tooltip">{toolTipText}</span>}
 
