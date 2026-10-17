@@ -5,7 +5,6 @@ import About from "../About/About";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
-import { articlesData } from "../../utils/articleData";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 import { KeywordContext } from "../../contexts/KeywordContext";
@@ -53,6 +52,8 @@ function App() {
       }
 
       const newArticle = await saveArticle(article);
+      console.log(newArticle);
+
       setSavedArticles((prev) => [newArticle, ...prev]);
     } catch (err) {
       console.error(err);
@@ -126,7 +127,14 @@ function App() {
       if (data.articles.length === 0) {
         setNoArticles(true);
       }
-      setArticles(data.articles);
+      const updatedArticles = data.articles.map((item) => ({
+        ...item,
+        tag: keyword,
+      }));
+      // articles.forEach((item) => (item.tag = keyword));
+      setArticles(updatedArticles);
+      console.log(articles);
+
       setLabelTag(keyword);
     } catch (err) {
       setErrorMessage(true);
@@ -189,10 +197,7 @@ function App() {
                           }
                         />
                       )}
-                      <Main
-                        labelTag={labelTag}
-                        handleSaveArticle={handleSaveArticle}
-                      />
+                      <Main handleSaveArticle={handleSaveArticle} />
                       <About />
                     </>
                   }

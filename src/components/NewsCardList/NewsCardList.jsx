@@ -6,7 +6,6 @@ import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
 function NewsCardList({
-  labelTag,
   articles,
   title,
   button,
@@ -42,16 +41,18 @@ function NewsCardList({
         <ul className="article__list">
           {(!isSavedNews ? articles.slice(0, visibleCount) : articles).map(
             (item) => {
+              console.log(item.tag);
               const isSaved = savedArticles.some(
                 (savedItem) => item.url === savedItem.url,
               );
+
               return (
                 <NewsCard
                   isSaved={isSaved}
                   article={item}
                   handleSaveArticle={handleSaveArticle}
                   handleDeleteArticle={handleDeleteArticle}
-                  labelTag={labelTag}
+                  labelTag={item.tag}
                   key={item.url}
                   publishedAt={item.publishedAt}
                   title={item.title}

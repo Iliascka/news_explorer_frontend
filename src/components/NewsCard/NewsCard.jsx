@@ -18,6 +18,7 @@ function NewsCard({
   const { isLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
   const isSavedPage = location.pathname === "/saved-news";
+
   const toolTipText = isSavedPage
     ? "Remove from saved"
     : "Sign in to save articles";
@@ -39,13 +40,14 @@ function NewsCard({
   const handleDeleteCard = () => {
     handleDeleteArticle(article);
   };
-
-  const handlerType = isSavedPage ? handleDeleteCard : handleSaveCard;
+  const articleKeyword = isLoggedIn && isSavedPage;
+  const handlerType =
+    !isSavedPage && !isSaved ? handleSaveCard : handleDeleteCard;
 
   return (
     <li className="card">
       <img src={urlToImage} alt="cardImg" className="card__image" />
-      {isLoggedIn && labelTag && (
+      {articleKeyword && labelTag && (
         <span className="card__keyword">{labelTag}</span>
       )}
       <button

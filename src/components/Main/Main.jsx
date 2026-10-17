@@ -3,7 +3,7 @@ import { ArticlesContext } from "../../contexts/ArticlesContext";
 import NewsCardList from "../NewsCardList/NewsCardList";
 import "./Main.css";
 
-function Main({ labelTag, handleSaveArticle }) {
+function Main({ handleSaveArticle }) {
   const { articles } = useContext(ArticlesContext);
 
   return (
@@ -11,7 +11,6 @@ function Main({ labelTag, handleSaveArticle }) {
       {articles.length > 0 && (
         <NewsCardList
           handleSaveArticle={handleSaveArticle}
-          labelTag={labelTag}
           articles={articles}
           title
           button

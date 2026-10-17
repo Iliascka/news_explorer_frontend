@@ -54,7 +54,7 @@ export function saveArticle(article) {
       title: article.tiltle,
       urlToImage: article.urlToImage,
       source: article.source,
-      keyword: article.keyword,
+      tag: article.tag,
     });
   });
 }
