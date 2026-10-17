@@ -17,7 +17,6 @@ function NewsCardList({
   const isSavedNews = location.pathname === "/saved-news";
   const [visibleCount, setVisibleCount] = useState(3);
   const { isLoggedIn } = useContext(CurrentUserContext);
-  let buttonText = "";
 
   const handleArticleList = () => {
     if (visibleCount < articles.length) {
@@ -28,9 +27,8 @@ function NewsCardList({
       return setVisibleCount(3);
     }
   };
-  visibleCount < articles.length
-    ? (buttonText = "Shows more")
-    : (buttonText = "Show less");
+
+  let buttonText = visibleCount < articles.length ? "Shows more" : "Show less";
 
   return (
     <div className="article">

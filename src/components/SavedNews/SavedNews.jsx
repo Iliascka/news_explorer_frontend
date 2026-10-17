@@ -1,7 +1,7 @@
 import "./SavedNews.css";
 import Header from "../Header/Header";
 import NewsCardList from "../NewsCardList/NewsCardList";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 
 function SavedNews({ userData, handleDeleteArticle }) {

@@ -17,7 +17,7 @@ import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
-import { getItems, saveArticle, deleteArticle } from "../../utils/api";
+import { saveArticle, deleteArticle } from "../../utils/api";
 import { setToken, getToken, removeToken } from "../../utils//token";
 
 function App() {
@@ -33,17 +33,26 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [userData, setUserData] = useState({});
 
-  const getItemsData = async () => {
-    try {
-      const data = await getItems();
-      if (data.length === 0) {
-        return;
-      }
-      setArticles(data);
-    } catch (err) {
-      console.error(err);
+  // Development only: Uncomment to test the mock GET API and import the getItems API function from api.js
+
+  // const getItemsData = async () => {
+  //   try {
+  //     const data = await getItems();
+  //     if (data.length === 0) {
+  //       return;
+  //     }
+  //     setArticles(data);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+
+  //Uncomment and Call the getItemsData()
+  useEffect(() => {
+    if (!isLoggedIn) {
+      return;
     }
-  };
+    // getItemsData();
+  }, [isLoggedIn]);
 
   const handleSaveArticle = async (article) => {
     if (!isLoggedIn) return;
@@ -74,18 +83,6 @@ function App() {
     }
   };
 
-  // Development only: Uncomment to test the mock GET API
-  useEffect(() => {
-    if (!isLoggedIn) {
-      setArticles([]);
-      setNoArticles(false);
-      setErrorMessage(false);
-      setIsEmptySearch(false);
-      return;
-    }
-    // getItemsData();
-  }, [isLoggedIn]);
-
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
     try {
@@ -105,21 +102,21 @@ function App() {
     }
   };
 
-  const verifyToken = async () => {
-    if (!getToken()) return;
-
-    try {
-      const data = await auth.checkToken(getToken());
-      setUserData(data.data);
-
-      setIsLoggedIn(true);
-    } catch (err) {
-      console.error(err);
-      setIsLoggedIn(false);
-      removeToken();
-    }
-  };
   useEffect(() => {
+    const verifyToken = async () => {
+      if (!getToken()) return;
+
+      try {
+        const data = await auth.checkToken(getToken());
+        setUserData(data.data);
+
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.error(err);
+        setIsLoggedIn(false);
+        removeToken();
+      }
+    };
     verifyToken();
   }, []);
 
@@ -151,6 +148,13 @@ function App() {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSignOut = () => {
+    setArticles([]);
+    setNoArticles(false);
+    setErrorMessage(false);
+    setIsEmptySearch(false);
   };
 
   const handleSignUpModal = () => {
@@ -189,6 +193,7 @@ function App() {
                         handleLoginModal={handleLoginModal}
                         handleSearch={handleSearch}
                         setIsEmptySearch={setIsEmptySearch}
+                        handleSignOut={handleSignOut}
                       />
                       {isLoading && <Preloader />}
                       {noArticles && (

@@ -11,7 +11,7 @@ function SearchForm({ handleSearch, setIsEmptySearch }) {
     if (!isLoggedIn) {
       setKeyword("");
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, setKeyword]);
 
   const handleChange = (evt) => {
     setKeyword(evt.target.value);

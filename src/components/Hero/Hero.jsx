@@ -7,6 +7,7 @@ function Hero({
   handleLoginModal,
   handleSearch,
   setIsEmptySearch,
+  handleSignOut,
 }) {
   return (
     <div className="hero">
@@ -15,6 +16,7 @@ function Hero({
         onClose={onClose}
         handleLoginModal={handleLoginModal}
         handleSearch={handleSearch}
+        handleSignOut={handleSignOut}
       />
       <HeroContent
         handleSearch={handleSearch}

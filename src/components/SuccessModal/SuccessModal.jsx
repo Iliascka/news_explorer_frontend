@@ -1,4 +1,3 @@
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./SuccessModal.css";
 import modalCloseIcon from "../../assets/modal-close.svg";
 import useModalClose from "../../hooks/useModalClose";
@@ -26,7 +25,6 @@ function SuccessModal({ onClose, isOpen }) {
       </div>
     </div>
   );
-  ``;
 }
 
 export default SuccessModal;

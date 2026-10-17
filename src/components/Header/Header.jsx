@@ -6,7 +6,7 @@ import "./Header.css";
 import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
 import menuIconBlack from "../../assets/menu-black.svg";
-function Header({ isOpen, onClose, handleLoginModal }) {
+function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
   const location = useLocation();
   const { isLoggedIn, setIsLoggedIn } = useContext(CurrentUserContext);
   const isSavedNews = location.pathname === "/saved-news";
@@ -50,6 +50,7 @@ function Header({ isOpen, onClose, handleLoginModal }) {
         isSavedNews={isSavedNews}
         isMobileMenu={isMobileMenu}
         setIsMobileMenu={setIsMobileMenu}
+        handleSignOut={handleSignOut}
       />
       {isMobileMenu && <div className="header__overlay"></div>}
     </header>

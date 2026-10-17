@@ -1,6 +1,6 @@
 import "./Preloader.css";
 
-function Preloader({ searchData }) {
+function Preloader() {
   return (
     <section className="circle-preloader">
       <>

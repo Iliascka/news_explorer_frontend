@@ -1,5 +1,5 @@
 export function getItems() {
-  return new Promise((resolve, reject) =>
+  return new Promise((resolve) =>
     resolve([
       {
         _id: "65f738423js9347sdf9394",
@@ -45,7 +45,7 @@ export function getItems() {
 }
 
 export function saveArticle(article) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve({
       _id: "65g0394k8guis85nf76820s8",
       url: article.url,
@@ -60,7 +60,7 @@ export function saveArticle(article) {
 }
 
 export function deleteArticle(article) {
-  return new Promise((resolve, reject) => {
-    resolve({ message: "Article deleted" });
+  return new Promise((resolve) => {
+    resolve({ message: "Article deleted", article });
   });
 }
