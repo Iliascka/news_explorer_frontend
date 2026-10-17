@@ -30,7 +30,6 @@ function App() {
   const [noArticles, setNoArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [keyword, setKeyword] = useState("");
-  const [labelTag, setLabelTag] = useState("");
 
   const getItemsData = async () => {
     try {
@@ -52,7 +51,6 @@ function App() {
       }
 
       const newArticle = await saveArticle(article);
-      console.log(newArticle);
 
       setSavedArticles((prev) => [newArticle, ...prev]);
     } catch (err) {
@@ -123,6 +121,9 @@ function App() {
     try {
       setIsLoading(true);
       const data = await getNewsApi(keyword);
+      if (!Array.isArray(data.articles)) {
+        throw new Error("Error: Invalid data");
+      }
 
       if (data.articles.length === 0) {
         setNoArticles(true);
@@ -131,11 +132,7 @@ function App() {
         ...item,
         tag: keyword,
       }));
-      // articles.forEach((item) => (item.tag = keyword));
       setArticles(updatedArticles);
-      console.log(articles);
-
-      setLabelTag(keyword);
     } catch (err) {
       setErrorMessage(true);
       console.error("Search failed", err);

@@ -41,8 +41,13 @@ function NewsCard({
     handleDeleteArticle(article);
   };
   const articleKeyword = isLoggedIn && isSavedPage;
+
   const handlerType =
-    !isSavedPage && !isSaved ? handleSaveCard : handleDeleteCard;
+    !isSavedPage && !isSaved
+      ? handleSaveCard
+      : isSavedPage && isSaved
+        ? handleDeleteCard
+        : undefined;
 
   return (
     <li className="card">

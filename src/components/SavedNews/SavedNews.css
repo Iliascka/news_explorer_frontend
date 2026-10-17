@@ -31,6 +31,7 @@
   font-family: "Roboto";
   font-weight: 400;
   color: rgba(26, 27, 34, 1);
+  margin: 0 4px 0 0;
 }
 
 @media screen and (max-width: 814px) {
