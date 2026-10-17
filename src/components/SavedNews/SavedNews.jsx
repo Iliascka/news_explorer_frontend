@@ -30,7 +30,7 @@ function SavedNews({ userData, handleDeleteArticle }) {
       <section className="savedNews">
         <p className="savedNews__header">Saved articles</p>
         <h2 className="savedNews__title">
-          {`${userData.name}, you have 5 saved articles`}
+          {`${userData.name}, you have ${savedArticles.length} saved articles`}
         </h2>
         <p className="savedNews__footer">
           <span className="savedNews__keyword">By keywords:</span>

@@ -26,6 +26,7 @@ function Navigation({
   const handleSignOutClick = () => {
     setIsLoggedIn(false);
     setIsMobileMenu(false);
+
     navigate("/");
     removeToken();
   };

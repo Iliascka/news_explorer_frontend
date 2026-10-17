@@ -29,6 +29,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [noArticles, setNoArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+  const [isEmptySearch, setIsEmptySearch] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [userData, setUserData] = useState({});
 
@@ -74,13 +75,16 @@ function App() {
   };
 
   // Development only: Uncomment to test the mock GET API
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     setArticles([]);
-  //     return;
-  //   }
-  //   getItemsData();
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setArticles([]);
+      setNoArticles(false);
+      setErrorMessage(false);
+      setIsEmptySearch(false);
+      return;
+    }
+    // getItemsData();
+  }, [isLoggedIn]);
 
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
@@ -122,6 +126,8 @@ function App() {
   const handleSearch = async (keyword) => {
     setNoArticles(false);
     setErrorMessage(false);
+    setIsEmptySearch(false);
+
     if (!keyword.trim()) return;
 
     try {
@@ -182,6 +188,7 @@ function App() {
                         isOpen={activeModal}
                         handleLoginModal={handleLoginModal}
                         handleSearch={handleSearch}
+                        setIsEmptySearch={setIsEmptySearch}
                       />
                       {isLoading && <Preloader />}
                       {noArticles && (
@@ -198,6 +205,12 @@ function App() {
                           paragraph={
                             "Sorry, something went wrong during the request. Please try again later."
                           }
+                        />
+                      )}
+                      {isEmptySearch && (
+                        <NothingFound
+                          tile={"Empty Search"}
+                          paragraph="Please enter a keyword to search"
                         />
                       )}
                       <Main handleSaveArticle={handleSaveArticle} />

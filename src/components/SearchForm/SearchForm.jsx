@@ -1,9 +1,17 @@
 import "./SearchForm.css";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { KeywordContext } from "../../contexts/KeywordContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function SearchForm({ handleSearch }) {
+function SearchForm({ handleSearch, setIsEmptySearch }) {
   const { keyword, setKeyword } = useContext(KeywordContext);
+  const { isLoggedIn } = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setKeyword("");
+    }
+  }, [isLoggedIn]);
 
   const handleChange = (evt) => {
     setKeyword(evt.target.value);
@@ -11,6 +19,10 @@ function SearchForm({ handleSearch }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    if (!keyword.trim()) {
+      setIsEmptySearch(true);
+      return;
+    }
     handleSearch(keyword);
   };
 
@@ -22,7 +34,7 @@ function SearchForm({ handleSearch }) {
           type="text"
           className="search-form__input"
           id="search-form"
-          placeholder="Text not entered"
+          placeholder="Please enter a keyword"
           value={keyword}
         />
       </label>

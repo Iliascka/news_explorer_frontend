@@ -1,7 +1,7 @@
 import SearchForm from "../SearchForm/SearchForm";
 import "./HeroContent.css";
 
-function HeroContent({ handleSearch }) {
+function HeroContent({ handleSearch, setIsEmptySearch }) {
   return (
     <section className="hero-content">
       <div className="hero-content__container">
@@ -11,7 +11,10 @@ function HeroContent({ handleSearch }) {
           account.
         </p>
       </div>
-      <SearchForm handleSearch={handleSearch} />
+      <SearchForm
+        handleSearch={handleSearch}
+        setIsEmptySearch={setIsEmptySearch}
+      />
     </section>
   );
 }
