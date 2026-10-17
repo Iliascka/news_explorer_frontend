@@ -30,6 +30,7 @@ function App() {
   const [noArticles, setNoArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [keyword, setKeyword] = useState("");
+  const [userData, setUserData] = useState({});
 
   const getItemsData = async () => {
     try {
@@ -72,13 +73,14 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      setArticles([]);
-      return;
-    }
-    getItemsData();
-  }, [isLoggedIn]);
+  // Development only: Uncomment to test the mock GET API
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     setArticles([]);
+  //     return;
+  //   }
+  //   getItemsData();
+  // }, [isLoggedIn]);
 
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
@@ -89,6 +91,8 @@ function App() {
       }
 
       setToken(data.token);
+      const userData = await auth.checkToken(data.token);
+      setUserData(userData.data);
       setIsLoggedIn(true);
       setActiveModal("");
     } catch (err) {
@@ -102,6 +106,8 @@ function App() {
 
     try {
       const data = await auth.checkToken(getToken());
+      setUserData(data.data);
+
       setIsLoggedIn(true);
     } catch (err) {
       console.error(err);
@@ -203,7 +209,10 @@ function App() {
                   path="/saved-news"
                   element={
                     <ProtectedRoute isLoggedIn={isLoggedIn}>
-                      <SavedNews handleDeleteArticle={handleDeleteArticle} />
+                      <SavedNews
+                        userData={userData}
+                        handleDeleteArticle={handleDeleteArticle}
+                      />
                     </ProtectedRoute>
                   }
                 />

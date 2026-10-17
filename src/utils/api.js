@@ -51,7 +51,7 @@ export function saveArticle(article) {
       url: article.url,
       publishedAt: article.publishedAt,
       description: article.description,
-      title: article.tiltle,
+      title: article.title,
       urlToImage: article.urlToImage,
       source: article.source,
       tag: article.tag,

@@ -114,6 +114,7 @@
   background-image: url("../../assets/bookmark.svg");
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .card__button_type_bookmark:hover {
@@ -130,6 +131,7 @@
   background-image: url("../../assets/deleteIcon.svg");
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 
 .card__button_type_delete:hover {

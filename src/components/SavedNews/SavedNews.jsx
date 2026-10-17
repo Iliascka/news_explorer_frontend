@@ -4,7 +4,7 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 import { useContext, useEffect, useState } from "react";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 
-function SavedNews({ handleDeleteArticle }) {
+function SavedNews({ userData, handleDeleteArticle }) {
   const { savedArticles } = useContext(ArticlesContext);
   const convertText = (text) => {
     const trimmed = text.trim();
@@ -29,7 +29,9 @@ function SavedNews({ handleDeleteArticle }) {
       <Header />
       <section className="savedNews">
         <p className="savedNews__header">Saved articles</p>
-        <h2 className="savedNews__title">Elise, you have 5 saved articles</h2>
+        <h2 className="savedNews__title">
+          {`${userData.name}, you have 5 saved articles`}
+        </h2>
         <p className="savedNews__footer">
           <span className="savedNews__keyword">By keywords:</span>
           {`${filteredTags.slice(0, 2).join(", ")} ${remainingText}`}
