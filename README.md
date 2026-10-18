@@ -1,16 +1,30 @@
-# React + Vite
+# NewsExplorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NewsExplorer is a responsive React application that allows users to search for news articles, explore results, and save articles for later reading.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Search for news articles by keyword
+- Display article cards with images and descriptions
+- Save and remove articles
+- View saved articles
+- Login interface and protected functionality
+- Responsive layout for different screen sizes
 
-## React Compiler
+## Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript
+- Vite
+- React Router
+- CSS
 
-## Expanding the ESLint configuration
+## Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+[View NewsExplorer](https://iliascka.github.io/news_explorer_frontend/)
+
+## Project Status
+
+**Stage 1 — Frontend:** React application using mock API data and authentication.
+
+**Stage 2 — Backend:** Planned integration with a custom API, database, and authentication system.
