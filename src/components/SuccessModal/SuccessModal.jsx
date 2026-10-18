@@ -14,7 +14,7 @@ function SuccessModal({ onClose, isOpen }) {
         <button onClick={onClose} className="success-modal__close-btn">
           <img
             src={modalCloseIcon}
-            alt="modalCloseIcon"
+            alt="Close"
             className="success-modal__icon"
           />
         </button>

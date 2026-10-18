@@ -38,7 +38,7 @@ function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
         >
           <img
             src={!isMobileMenu ? menuIconColor : closeIcon}
-            alt="menuIcon"
+            alt={isMobileMenu ? "Close navigation menu" : "Open navigation menu"}
             className="header__menu-icon"
           />
         </button>

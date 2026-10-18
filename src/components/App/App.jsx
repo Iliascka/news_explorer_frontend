@@ -45,6 +45,7 @@ function App() {
   //   } catch (err) {
   //     console.error(err);
   //   }
+  // };
 
   //Uncomment and Call the getItemsData()
   useEffect(() => {

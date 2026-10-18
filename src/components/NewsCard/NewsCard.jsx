@@ -1,6 +1,6 @@
 import "./NewsCard.css";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function NewsCard({
@@ -17,7 +17,9 @@ function NewsCard({
 }) {
   const { isLoggedIn } = useContext(CurrentUserContext);
   const location = useLocation();
+  const [failedImageUrl, setFailedImageUrl] = useState(null);
   const isSavedPage = location.pathname === "/saved-news";
+  const hasImage = urlToImage && failedImageUrl !== urlToImage;
 
   const toolTipText = isSavedPage
     ? "Remove from saved"
@@ -51,7 +53,22 @@ function NewsCard({
 
   return (
     <li className="card">
-      <img src={urlToImage} alt="cardImg" className="card__image" />
+      {hasImage ? (
+        <img
+          src={urlToImage}
+          alt={title ? `Article image: ${title}` : "Article image"}
+          className="card__image"
+          onError={() => setFailedImageUrl(urlToImage)}
+        />
+      ) : (
+        <div
+          className="card__image-fallback"
+          role="img"
+          aria-label="Article image unavailable"
+        >
+          Image unavailable
+        </div>
+      )}
       {articleKeyword && labelTag && (
         <span className="card__keyword">{labelTag}</span>
       )}

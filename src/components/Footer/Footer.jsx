@@ -21,10 +21,18 @@ function Footer() {
         </ul>
         <div className="footer__social-icons">
           <NavLink className="nav-link" to="/">
-            <img src={githubIcon} alt="" className="footer__social-icon" />
+            <img
+              src={githubIcon}
+              alt="GitHub"
+              className="footer__social-icon"
+            />
           </NavLink>
           <NavLink className="nav-link" to="/">
-            <img src={linkedinIcon} alt="" className="footer__social-icon" />
+            <img
+              src={linkedinIcon}
+              alt="LinkedIn"
+              className="footer__social-icon"
+            />
           </NavLink>
         </div>
       </div>
