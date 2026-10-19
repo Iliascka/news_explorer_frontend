@@ -23,6 +23,10 @@ NewsExplorer is a responsive React application that allows users to search for n
 
 [View NewsExplorer](https://iliascka.github.io/news_explorer_frontend/)
 
+## Project Pitch Video
+
+[Watch the NewsExplorer Project Pitch](https://www.loom.com/share/3c0c300d2d80454984c078979d3a88e4)
+
 ## Project Status
 
 **Stage 1 — Frontend:** React application using mock API data and authentication.
