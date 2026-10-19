@@ -1,11 +1,8 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import useModalClose from "../../hooks/useModalClose";
 import { useMemo } from "react";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 function LoginModal({ handleLogin, isOpen, onClose, onSecondaryButtonClick }) {
-  const { handleOverlayClick } = useModalClose(isOpen, onClose);
-
   const defaultValues = useMemo(
     () => ({
       email: "",
@@ -56,7 +53,6 @@ function LoginModal({ handleLogin, isOpen, onClose, onSecondaryButtonClick }) {
       isOpen={isOpen}
       onClose={onClose}
       onSecondaryButtonClick={onSecondaryButtonClick}
-      handleOverlayClick={handleOverlayClick}
       isValid={isValid}
     >
       <label htmlFor="login-email" className="modal__label">
@@ -91,6 +87,7 @@ function LoginModal({ handleLogin, isOpen, onClose, onSecondaryButtonClick }) {
           <span className="modal__error">{errors.password}</span>
         ) : null}
       </label>
+      <span className="modal__error-text">Incorrect email or password.</span>
     </ModalWithForm>
   );
 }

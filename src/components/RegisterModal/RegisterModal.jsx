@@ -1,5 +1,4 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import useModalClose from "../../hooks/useModalClose";
 import { useMemo } from "react";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
@@ -9,8 +8,6 @@ function RegisterModal({
   onSecondaryButtonClick,
   handleSuccessModal,
 }) {
-  const { handleOverlayClick } = useModalClose(isOpen, onClose);
-
   const defaultValues = useMemo(
     () => ({
       email: "",
@@ -65,7 +62,6 @@ function RegisterModal({
       isOpen={isOpen}
       onClose={onClose}
       onSecondaryButtonClick={onSecondaryButtonClick}
-      handleOverlayClick={handleOverlayClick}
       isValid={isValid}
     >
       <label htmlFor="register-email" className="modal__label">
@@ -115,6 +111,10 @@ function RegisterModal({
           <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
+
+      <span className="modal__error-text">
+        An account with this email already exists.
+      </span>
     </ModalWithForm>
   );
 }

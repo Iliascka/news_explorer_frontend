@@ -7,7 +7,7 @@ function About() {
         <div className="about__image">
           <img
             src={placeholderIcon}
-            alt=""
+            alt="Placeholder avatar"
             className="about__placeholder-icon"
           />
           <p className="about__placeholder-text">

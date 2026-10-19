@@ -66,7 +66,12 @@ function Navigation({
           type="button"
           className={`nav__button ${buttonMain || isMobileMenu ? "nav__button_main" : ""}`}
         >
-          Ilias <img className="nav__button-icon" src={buttonIcon} alt="" />
+          Ilias{" "}
+          <img
+            className="nav__button-icon"
+            src={buttonIcon}
+            alt="Sign out icon"
+          />
         </button>
       ) : (
         <button

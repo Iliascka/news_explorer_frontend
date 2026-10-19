@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import modalCloseIcon from "../../assets/modal-close.svg";
+import useModalClose from "../../hooks/useModalClose";
 
 function ModalWithForm({
   children,
@@ -9,10 +10,11 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSecondaryButtonClick,
-  handleOverlayClick,
   onSubmit,
   isValid,
 }) {
+  const { handleOverlayClick } = useModalClose(isOpen, onClose);
+
   return (
     <div
       onClick={handleOverlayClick}
@@ -26,9 +28,6 @@ function ModalWithForm({
         <form onSubmit={onSubmit} className="modal__form">
           {children}
           <div className="modal__buttons">
-            <span className="modal__error-text">
-              This email is not available
-            </span>
             <button type="submit" className="modal__submit" disabled={!isValid}>
               {buttonText}
             </button>
