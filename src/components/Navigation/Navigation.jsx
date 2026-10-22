@@ -1,0 +1,89 @@
+import { useLocation, NavLink, useNavigate } from "react-router-dom";
+import "./Navigation.css";
+import { removeToken } from "../../utils/token";
+import logoutIconBlack from "../../assets/logoutIconBlack.svg";
+import logoutIconWhite from "../../assets/logoutIconWhite.svg";
+
+function Navigation({
+  isSavedNews,
+  isLoggedIn,
+  setIsLoggedIn,
+  handleLoginModal,
+  isMobileMenu,
+  setIsMobileMenu,
+  handleSignOut,
+}) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const buttonMain = location.pathname === "/";
+  const buttonIcon =
+    buttonMain || isMobileMenu ? logoutIconWhite : logoutIconBlack;
+
+  const handleSignInClick = () => {
+    handleLoginModal();
+    setIsMobileMenu(false);
+  };
+
+  const handleSignOutClick = () => {
+    setIsLoggedIn(false);
+    setIsMobileMenu(false);
+    handleSignOut();
+
+    navigate("/");
+    removeToken();
+  };
+
+  return (
+    <nav
+      className={`nav ${!isLoggedIn ? "nav__list_logged-out" : ""} ${isMobileMenu ? "nav_mobile-menu" : ""}`}
+    >
+      <ul className="nav__list">
+        {" "}
+        <NavLink
+          className={({ isActive }) =>
+            `nav-link ${isSavedNews && !isMobileMenu ? "nav-link_saved-news " : "nav-link_main"}
+             ${isActive ? "nav-link_active" : ""}`
+          }
+          to="/"
+        >
+          <li className="nav__item">Home</li>
+        </NavLink>
+        {(isSavedNews || isLoggedIn) && (
+          <NavLink
+            className={({ isActive }) =>
+              `nav-link ${isSavedNews && !isMobileMenu ? "nav-link_saved-news " : "nav-link_main"} ${isActive ? "nav-link_active" : ""}`
+            }
+            to="/saved-news"
+          >
+            {" "}
+            <li className="nav__item">Saved Articles</li>
+          </NavLink>
+        )}
+      </ul>
+      {isSavedNews || isLoggedIn ? (
+        <button
+          onClick={handleSignOutClick}
+          type="button"
+          className={`nav__button ${buttonMain || isMobileMenu ? "nav__button_main" : ""}`}
+        >
+          Ilias{" "}
+          <img
+            className="nav__button-icon"
+            src={buttonIcon}
+            alt="Sign out icon"
+          />
+        </button>
+      ) : (
+        <button
+          onClick={handleSignInClick}
+          type="button"
+          className="nav__button_logged-out"
+        >
+          Sign in
+        </button>
+      )}
+    </nav>
+  );
+}
+
+export default Navigation;
