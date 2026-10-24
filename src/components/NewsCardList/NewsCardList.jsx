@@ -40,7 +40,7 @@ function NewsCardList({
           {(!isSavedNews ? articles.slice(0, visibleCount) : articles).map(
             (item) => {
               const isSaved = savedArticles.some(
-                (savedItem) => item.url === savedItem.url,
+                (savedItem) => item.link === savedItem.link,
               );
 
               return (
@@ -49,13 +49,13 @@ function NewsCardList({
                   article={item}
                   handleSaveArticle={handleSaveArticle}
                   handleDeleteArticle={handleDeleteArticle}
-                  labelTag={item.tag}
-                  key={item.url}
-                  publishedAt={item.publishedAt}
+                  keyword={item.keyword}
+                  key={item.link}
+                  date={item.date}
                   title={item.title}
-                  description={item.description}
-                  urlToImage={item.urlToImage}
-                  source={item.source.name}
+                  text={item.text}
+                  image={item.image}
+                  source={item.source}
                 />
               );
             },

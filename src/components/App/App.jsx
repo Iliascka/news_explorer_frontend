@@ -47,7 +47,7 @@ function App() {
   //   }
   // };
 
-  //Uncomment and Call the getItemsData()
+  // Uncomment and Call the getItemsData
   useEffect(() => {
     if (!isLoggedIn) {
       return;
@@ -139,8 +139,13 @@ function App() {
         setNoArticles(true);
       }
       const updatedArticles = data.articles.map((item) => ({
-        ...item,
-        tag: keyword,
+        title: item.title,
+        link: item.url,
+        date: item.publishedAt,
+        text: item.description,
+        image: item.urlToImage,
+        source: item.source?.name ?? "",
+        keyword,
       }));
       setArticles(updatedArticles);
     } catch (err) {

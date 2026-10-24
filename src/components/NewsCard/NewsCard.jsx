@@ -4,11 +4,11 @@ import { useContext, useState } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function NewsCard({
-  labelTag,
-  publishedAt,
+  keyword,
+  date,
   title,
-  description,
-  urlToImage,
+  text,
+  image,
   source,
   handleSaveArticle,
   handleDeleteArticle,
@@ -19,7 +19,7 @@ function NewsCard({
   const location = useLocation();
   const [failedImageUrl, setFailedImageUrl] = useState(null);
   const isSavedPage = location.pathname === "/saved-news";
-  const hasImage = urlToImage && failedImageUrl !== urlToImage;
+  const hasImage = image && failedImageUrl !== image;
 
   const toolTipText = isSavedPage
     ? "Remove from saved"
@@ -28,7 +28,7 @@ function NewsCard({
     ? "card__button_type_delete"
     : "card__button_type_bookmark";
 
-  const formattedDate = new Date(publishedAt).toLocaleDateString("en-US", {
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -55,10 +55,10 @@ function NewsCard({
     <li className="card">
       {hasImage ? (
         <img
-          src={urlToImage}
+          src={image}
           alt={title ? `Article image: ${title}` : "Article image"}
           className="card__image"
-          onError={() => setFailedImageUrl(urlToImage)}
+          onError={() => setFailedImageUrl(image)}
         />
       ) : (
         <div
@@ -69,8 +69,8 @@ function NewsCard({
           Image unavailable
         </div>
       )}
-      {articleKeyword && labelTag && (
-        <span className="card__keyword">{labelTag}</span>
+      {articleKeyword && keyword && (
+        <span className="card__keyword">{keyword}</span>
       )}
       <button
         onClick={handlerType}
@@ -82,7 +82,7 @@ function NewsCard({
       <div className="card__content">
         <p className="card__header">{formattedDate}</p>
         <h2 className="card__title">{title}</h2>
-        <p className="card__description">{description}</p>
+        <p className="card__description">{text}</p>
         <p className="card__footer">{source}</p>
       </div>
     </li>

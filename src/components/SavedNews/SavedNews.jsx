@@ -11,13 +11,13 @@ function SavedNews({ userData, handleDeleteArticle }) {
     return trimmed[0].toUpperCase() + trimmed.slice(1).toLowerCase();
   };
 
-  const filteredTags = savedArticles
-    .map((item) => convertText(item.tag))
-    .filter((tag, index, array) => {
-      return array.indexOf(tag) === index;
+  const filteredKeywords = savedArticles
+    .map((item) => convertText(item.keyword))
+    .filter((keyword, index, array) => {
+      return array.indexOf(keyword) === index;
     });
 
-  const remainingLength = filteredTags.length - 2;
+  const remainingLength = filteredKeywords.length - 2;
   let remainingText = "";
   if (remainingLength > 1) {
     remainingText = `and ${remainingLength} others`;
@@ -34,7 +34,7 @@ function SavedNews({ userData, handleDeleteArticle }) {
         </h2>
         <p className="savedNews__footer">
           <span className="savedNews__keyword">By keywords:</span>
-          {`${filteredTags.slice(0, 2).join(", ")} ${remainingText}`}
+          {`${filteredKeywords.slice(0, 2).join(", ")} ${remainingText}`}
         </p>
       </section>
       <NewsCardList
