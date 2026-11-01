@@ -31,4 +31,6 @@ NewsExplorer is a responsive React application that allows users to search for n
 
 **Stage 1 — Frontend:** React application using mock API data and authentication.
 
-**Stage 2 — Backend:** Planned integration with a custom API, database, and authentication system.
+**Stage 2 - Backend:** REST API, MongoDB models, authentication, authorization, validation, error handling, and logging implemented.
+
+**Stage 3 - Integration:** Connect the React frontend to the backend and deploy the complete application.

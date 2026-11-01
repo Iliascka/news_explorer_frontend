@@ -17,7 +17,7 @@ import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
-import { saveArticle, deleteArticle } from "../../utils/api";
+import { saveArticle, deleteArticle } from "../../utils/MainApi";
 import { setToken, getToken, removeToken } from "../../utils//token";
 
 function App() {
@@ -125,7 +125,6 @@ function App() {
     setNoArticles(false);
     setErrorMessage(false);
     setIsEmptySearch(false);
-
     if (!keyword.trim()) return;
 
     try {

@@ -1,4 +1,4 @@
-import { baseUrl, apiKey } from "./constants";
+import { newsApiUrl, apiKey } from "./constants";
 
 export const getNewsApi = async (keyword) => {
   try {
@@ -8,7 +8,7 @@ export const getNewsApi = async (keyword) => {
       .slice(0, 10);
 
     const res = await fetch(
-      `${baseUrl}?q=${encodeURIComponent(keyword)}&apiKey=${apiKey}&from=${dateFrom}&to=${dateTo}&pageSize=${100}`,
+      `${newsApiUrl}?q=${encodeURIComponent(keyword)}&apiKey=${apiKey}&from=${dateFrom}&to=${dateTo}&pageSize=${100}`,
     );
 
     if (!res.ok) {
