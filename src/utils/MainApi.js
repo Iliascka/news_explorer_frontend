@@ -15,23 +15,24 @@ export function getItems() {
   });
 }
 
+
+
 export function saveArticle(article) {
-  return new Promise((resolve) => {
-    resolve({
-      _id: "65g0394k8guis85nf76820s8",
-      link: article.link,
-      date: article.date,
-      text: article.text,
-      title: article.title,
-      image: article.image,
-      source: article.source,
-      keyword: article.keyword,
-    });
-  });
+ return request(`${baseUrl}/articles`,{
+  method: "Post",
+  headers:{
+   "Content-Type":"application/json"
+  },
+  credentials:"include",
+  body:JSON.stringify(article)
+ })
 }
 
 export function deleteArticle(article) {
-  return new Promise((resolve) => {
-    resolve({ message: "Article deleted", article });
-  });
+  return request(`$baseUrl/articles/${article.id}`,{
+    method:"DELETE",
+    credentials:"include"
+  
+   })
+ 
 }
