@@ -27,7 +27,7 @@ export function saveArticle(article) {
 }
 
 export function deleteArticle(article) {
-  return request(`$baseUrl/articles/${article.id}`, {
+  return request(`$baseUrl/articles/${article._id}`, {
     method: "DELETE",
     credentials: "include",
   });

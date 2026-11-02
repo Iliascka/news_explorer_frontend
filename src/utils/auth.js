@@ -1,6 +1,17 @@
 import { baseUrl } from "./constants";
 
-export const authorize = async ({ email, password }) => {
+export const register = async ({ name, email, password }) => {
+  const res = await fetch(`${baseUrl}/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, email, password }),
+  });
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+};
+
+export const login = async ({ email, password }) => {
   const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {

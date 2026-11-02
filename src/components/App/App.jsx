@@ -87,7 +87,7 @@ function App() {
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
     try {
-      const data = await auth.authorize({ email, password });
+      const data = await auth.login({ email, password });
       if (!data.token) {
         throw new Error(`Error: No token received`);
       }

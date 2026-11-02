@@ -64,6 +64,23 @@ function RegisterModal({
       onSecondaryButtonClick={onSecondaryButtonClick}
       isValid={isValid}
     >
+      <label htmlFor="register-username" className="modal__label">
+        Name
+        <input
+          type="text"
+          className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
+          id="register-username"
+          placeholder="Enter your username"
+          name="name"
+          value={values.name}
+          onChange={handleChange}
+          aria-invalid={showNameError}
+        />
+        {showNameError ? (
+          <span className="modal__error">{errors.name}</span>
+        ) : null}
+      </label>
+
       <label htmlFor="register-email" className="modal__label">
         Email
         <input
@@ -93,22 +110,6 @@ function RegisterModal({
         />
         {showPasswordError ? (
           <span className="modal__error">{errors.password}</span>
-        ) : null}
-      </label>
-      <label htmlFor="register-username" className="modal__label">
-        Name
-        <input
-          type="text"
-          className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
-          id="register-username"
-          placeholder="Enter your username"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-          aria-invalid={showNameError}
-        />
-        {showNameError ? (
-          <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
 
