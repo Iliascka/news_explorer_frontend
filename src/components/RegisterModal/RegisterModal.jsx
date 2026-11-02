@@ -108,7 +108,7 @@ function RegisterModal({
         <input
           id="register-password"
           type="password"
-          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
+          className={`modal__input ${showPasswordError ? "modal__input_type_error" : ""}`}
           name="password"
           value={values.password}
           onChange={handleChange}

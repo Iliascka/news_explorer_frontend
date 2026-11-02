@@ -12,6 +12,7 @@ function Navigation({
   isMobileMenu,
   setIsMobileMenu,
   handleSignOut,
+  userData,
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ function Navigation({
           type="button"
           className={`nav__button ${buttonMain || isMobileMenu ? "nav__button_main" : ""}`}
         >
-          Ilias{" "}
+          {userData.name}
           <img
             className="nav__button-icon"
             src={buttonIcon}

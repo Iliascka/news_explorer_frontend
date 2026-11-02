@@ -8,7 +8,8 @@ import closeIcon from "../../assets/close.svg";
 import menuIconBlack from "../../assets/menu-black.svg";
 function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
   const location = useLocation();
-  const { isLoggedIn, setIsLoggedIn } = useContext(CurrentUserContext);
+  const { isLoggedIn, setIsLoggedIn, userData } =
+    useContext(CurrentUserContext);
   const isSavedNews = location.pathname === "/saved-news";
   const [isMobileMenu, setIsMobileMenu] = useState(false);
   const menuIconColor = isSavedNews ? menuIconBlack : menuIcon;
@@ -38,12 +39,15 @@ function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
         >
           <img
             src={!isMobileMenu ? menuIconColor : closeIcon}
-            alt={isMobileMenu ? "Close navigation menu" : "Open navigation menu"}
+            alt={
+              isMobileMenu ? "Close navigation menu" : "Open navigation menu"
+            }
             className="header__menu-icon"
           />
         </button>
       )}
       <Navigation
+        userData={userData}
         setIsLoggedIn={setIsLoggedIn}
         handleLoginModal={handleLoginModal}
         isLoggedIn={isLoggedIn}

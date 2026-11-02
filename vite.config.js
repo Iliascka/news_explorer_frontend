@@ -6,6 +6,7 @@ export default defineConfig({
   base: "/news_explorer_frontend/",
   plugins: [react()],
   server: {
+    host: "127.0.0.1",
     open: true,
   },
 });

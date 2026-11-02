@@ -109,9 +109,8 @@ function App() {
   useEffect(() => {
     const verifyUserCookies = async () => {
       try {
-        const user = await auth.getCurrentUser();
-        console.log(user);
-        setUserData(user);
+        const data = await auth.getCurrentUser();
+        setUserData(data.user);
         setIsLoggedIn(true);
       } catch (err) {
         console.error(err);
@@ -181,7 +180,9 @@ function App() {
   return (
     <>
       <div className="page">
-        <CurrentUserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <CurrentUserContext.Provider
+          value={{ isLoggedIn, setIsLoggedIn, userData }}
+        >
           <ArticlesContext.Provider
             value={{ articles, setArticles, savedArticles }}
           >
