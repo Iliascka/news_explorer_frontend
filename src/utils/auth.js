@@ -20,10 +20,10 @@ export const login = async ({ email, password }) => {
     credentials: "include",
     body: JSON.stringify({ email, password }),
   });
-  return res.ok ? res.text() : Promise.reject(`Error: ${res.status}`);
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
-export const gerCurrentUser = async () => {
+export const getCurrentUser = async () => {
   const res = await fetch(`${baseUrl}/users/me`, {
     credentials: "include",
   });

@@ -45,11 +45,14 @@
 }
 
 .success-modal__text {
+  display: flex;
+  flex-direction: column;
   font-family: "Roboto";
   font-weight: 900;
   font-size: 24px;
-  line-height: 100%;
+  /* line-height: 100%;/ */
   margin: 0;
+  gap: 8px;
 }
 
 .success-modal__button {

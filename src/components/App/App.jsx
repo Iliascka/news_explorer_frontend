@@ -18,7 +18,6 @@ import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import { saveArticle, deleteArticle } from "../../utils/MainApi";
-import { setToken, getToken, removeToken } from "../../utils//token";
 
 function App() {
   // States
@@ -98,13 +97,7 @@ function App() {
     if (!email || !password) return;
     try {
       const data = await auth.login({ email, password });
-      if (!data.token) {
-        throw new Error(`Error: No token received`);
-      }
-
-      setToken(data.token);
-      const userData = await auth.checkToken(data.token);
-      setUserData(userData.data);
+      setUserData(data.user);
       setIsLoggedIn(true);
       setActiveModal("");
     } catch (err) {
@@ -114,21 +107,18 @@ function App() {
   };
 
   useEffect(() => {
-    const verifyToken = async () => {
-      if (!getToken()) return;
-
+    const verifyUserCookies = async () => {
       try {
-        const data = await auth.checkToken(getToken());
-        setUserData(data.data);
-
+        const user = await auth.getCurrentUser();
+        console.log(user);
+        setUserData(user);
         setIsLoggedIn(true);
       } catch (err) {
         console.error(err);
         setIsLoggedIn(false);
-        removeToken();
       }
     };
-    verifyToken();
+    verifyUserCookies();
   }, []);
 
   const handleSearch = async (keyword) => {
@@ -267,6 +257,7 @@ function App() {
           onSecondaryButtonClick={handleSignUpModal}
         />
         <SuccessModal
+          userData={userData}
           isOpen={activeModal === "success"}
           onClose={closeModal}
           onSecondaryButtonClick={handleLoginModal}
