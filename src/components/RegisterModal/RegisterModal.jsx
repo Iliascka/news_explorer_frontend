@@ -7,6 +7,7 @@ function RegisterModal({
   onClose,
   onSecondaryButtonClick,
   handleSuccessModal,
+  handleRegister,
 }) {
   const defaultValues = useMemo(
     () => ({
@@ -33,14 +34,19 @@ function RegisterModal({
     handleSuccessModal();
   };
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     setHasSubmitted(true);
     const { nextIsValid } = validateForm(values);
     if (!nextIsValid) {
       return;
     }
-    handleSubmitModal();
+    try {
+      await handleRegister(values);
+      handleSubmitModal();
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   const showNameError =

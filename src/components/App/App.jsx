@@ -84,6 +84,16 @@ function App() {
     }
   };
 
+  const handleRegister = async ({ name, email, password }) => {
+    if (!name || !email || !password) return;
+    try {
+      const data = await auth.register({ name, email, password });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
     try {
@@ -246,9 +256,9 @@ function App() {
         <RegisterModal
           isOpen={activeModal === "signUp"}
           onClose={closeModal}
-          handleLoginModal={handleLoginModal}
           onSecondaryButtonClick={handleLoginModal}
           handleSuccessModal={handleSuccessModal}
+          handleRegister={handleRegister}
         />
         <LoginModal
           handleLogin={handleLogin}
@@ -256,7 +266,11 @@ function App() {
           onClose={closeModal}
           onSecondaryButtonClick={handleSignUpModal}
         />
-        <SuccessModal isOpen={activeModal === "success"} onClose={closeModal} />
+        <SuccessModal
+          isOpen={activeModal === "success"}
+          onClose={closeModal}
+          onSecondaryButtonClick={handleLoginModal}
+        />
         <Footer />
       </div>
     </>
