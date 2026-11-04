@@ -9,7 +9,7 @@ const request = async (url, options) => {
   return handleServerResponse(res);
 };
 
-export function getItems() {
+export function getArticles() {
   return request(`${baseUrl}/articles`, {
     credentials: "include",
   });

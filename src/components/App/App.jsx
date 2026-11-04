@@ -17,7 +17,7 @@ import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
-import { saveArticle, deleteArticle } from "../../utils/MainApi";
+import { getArticles, saveArticle, deleteArticle } from "../../utils/MainApi";
 
 function App() {
   // States
@@ -31,27 +31,25 @@ function App() {
   const [isEmptySearch, setIsEmptySearch] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [userData, setUserData] = useState({});
+  const [authCheck, setAuthCheck] = useState(true);
 
-  // Development only: Uncomment to test the mock GET API and import the getItems API function from api.js
+  const getItemsData = async () => {
+    try {
+      const data = await getArticles();
+      setSavedArticles(data);
+      if (data.length === 0) {
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  // const getItemsData = async () => {
-  //   try {
-  //     const data = await getItems();
-  //     if (data.length === 0) {
-  //       return;
-  //     }
-  //     setArticles(data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // Uncomment and Call the getItemsData
   useEffect(() => {
     if (!isLoggedIn) {
       return;
     }
-    // getItemsData();
+    getItemsData();
   }, [isLoggedIn]);
 
   const handleSaveArticle = async (article) => {
@@ -87,7 +85,7 @@ function App() {
   const handleRegister = async ({ name, email, password }) => {
     if (!name || !email || !password) return;
     try {
-      const data = await auth.register({ name, email, password });
+      await auth.register({ name, email, password });
     } catch (err) {
       console.error(err);
       throw err;
@@ -116,6 +114,8 @@ function App() {
       } catch (err) {
         console.error(err);
         setIsLoggedIn(false);
+      } finally {
+        setAuthCheck(false);
       }
     };
     verifyUserCookies();
@@ -233,7 +233,10 @@ function App() {
                 <Route
                   path="/saved-news"
                   element={
-                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <ProtectedRoute
+                      isLoggedIn={isLoggedIn}
+                      authCheck={authCheck}
+                    >
                       <SavedNews
                         userData={userData}
                         handleDeleteArticle={handleDeleteArticle}
