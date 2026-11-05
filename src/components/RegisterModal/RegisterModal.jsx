@@ -49,6 +49,11 @@ function RegisterModal({
     }
   }
 
+  // Show an error only when it exists AND the user has either
+  // attempted submission or entered text in that specific field.
+  // Boolean() converts a possible string/undefined error value
+  // into an explicit true/false result.
+  // This keeps untouched, empty fields from showing errors prematurely.
   const showNameError =
     Boolean(errors.name) && (hasSubmitted || values.name.trim().length > 0);
 
