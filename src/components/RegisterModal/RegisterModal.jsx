@@ -1,5 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 function RegisterModal({
@@ -17,6 +17,7 @@ function RegisterModal({
     }),
     [],
   );
+  const [apiError, setApiError] = useState("");
 
   const {
     values,
@@ -42,9 +43,18 @@ function RegisterModal({
       return;
     }
     try {
+      setApiError("");
+
       await handleRegister(values);
       handleSubmitModal();
     } catch (err) {
+      console.log("registrations error:", err.message);
+      console.log("error status:", err?.status);
+      if (err.status === 409) {
+        setApiError("This email is not available");
+      } else {
+        setApiError("Registration failed. Please try again.");
+      }
       console.error(err);
     }
   }
@@ -74,6 +84,7 @@ function RegisterModal({
       onClose={onClose}
       onSecondaryButtonClick={onSecondaryButtonClick}
       isValid={isValid}
+      apiError={apiError}
     >
       <label htmlFor="register-username" className="modal__label">
         Name

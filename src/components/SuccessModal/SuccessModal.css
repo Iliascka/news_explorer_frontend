@@ -44,6 +44,10 @@
   cursor: pointer;
 }
 
+.success-modal__close-btn:hover {
+  opacity: 0.7;
+}
+
 .success-modal__text {
   display: flex;
   flex-direction: column;
@@ -63,4 +67,9 @@
   background-color: transparent;
   border: none;
   padding: 0px;
+  cursor: pointer;
+}
+
+.success-modal__button:hover {
+  color: rgba(47, 113, 229, 0.657);
 }

@@ -8,7 +8,12 @@ export const register = async ({ name, email, password }) => {
     },
     body: JSON.stringify({ name, email, password }),
   });
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  if (!res.ok) {
+    const error = new Error("Registration failed");
+    error.status = res.status;
+    throw error;
+  }
+  return res.json();
 };
 
 export const login = async ({ email, password }) => {
