@@ -74,7 +74,7 @@ function App() {
       if (!article) {
         throw new Error("Failed to delete the article. Please try again");
       }
-      console.log(article);
+
       const { message } = await deleteArticle(article);
       const newArticles = savedArticles.filter((item) => item !== article);
       alert(message);

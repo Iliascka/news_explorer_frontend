@@ -16,11 +16,20 @@ function SavedNews({
     return trimmed[0].toUpperCase() + trimmed.slice(1).toLowerCase();
   };
 
-  const filteredKeywords = savedArticles
-    .map((item) => convertText(item.keyword))
-    .filter((keyword, index, array) => {
-      return array.indexOf(keyword) === index;
+  const filteredKeywords = [];
+  for (let i = 0; i < savedArticles.length; i++) {
+    const existing = filteredKeywords.find((item) => {
+      return item.keyword === convertText(savedArticles[i].keyword);
     });
+    if (existing) {
+      existing.count++;
+    } else {
+      filteredKeywords.push({
+        keyword: convertText(savedArticles[i].keyword),
+        count: 1,
+      });
+    }
+  }
 
   const remainingLength = filteredKeywords.length - 2;
   let remainingText = "";
@@ -39,7 +48,11 @@ function SavedNews({
         </h2>
         <p className="savedNews__footer">
           <span className="savedNews__keyword">By keywords:</span>
-          {`${filteredKeywords.slice(0, 2).join(", ")} ${remainingText}`}
+          {`${filteredKeywords
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 2)
+            .map((item) => item.keyword)
+            .join(", ")} ${remainingText}`}
         </p>
       </section>
       <NewsCardList
