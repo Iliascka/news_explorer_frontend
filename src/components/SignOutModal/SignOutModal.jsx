@@ -1,30 +1,34 @@
 import useModalClose from "../../hooks/useModalClose";
+import modalCloseIcon from "../../assets/modal-close.svg";
+import "./SignOutModal.css";
 
-function SignOutModal({ isOpen, onClose }) {
+function SignOutModal({ isOpen, onClose, userData }) {
   const { handleOverlayClick } = useModalClose(isOpen, onClose);
   return (
     <div
       onClick={handleOverlayClick}
-      className={`success-modal  ${isOpen ? "success-modal-opened" : ""}`}
+      className={`signOut-modal  ${isOpen ? "signOut-modal-opened" : ""}`}
     >
-      <div className="success-modal__content">
-        <button onClick={onClose} className="success-modal__close-btn">
+      <div className="signOut-modal__content">
+        <button onClick={onClose} className="signOut-modal__close-btn">
           <img
             src={modalCloseIcon}
             alt="Close"
-            className="success-modal__icon"
+            className="signOut-modal__icon"
           />
         </button>
-        <h3 className="success-modal__text">
-          Registration successfully completed!
+        <h3 className="signOut-modal__text">
+          {userData.name} are you sure you want to sign out?
         </h3>
-        <button
-          onClick={onSecondaryButtonClick}
-          className="success-modal__button"
-        >
-          Sign in
-        </button>
+        <div className="singOut-modal_buttons">
+          <button className="signOut-modal__button signOut-modal__button-signOut">
+            Sign out
+          </button>
+          <button className="signOut-modal__button ">Cancel</button>
+        </div>
       </div>
     </div>
   );
 }
+
+export default SignOutModal;

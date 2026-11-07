@@ -25,7 +25,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState("signOut");
   const [isLoading, setIsLoading] = useState(false);
   const [noArticles, setNoArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -274,7 +274,7 @@ function App() {
         />
         <SignOutModal
           isOpen={activeModal === "signOut"}
-          onClose={onClose}
+          onClose={closeModal}
           userData={userData}
         />
         <Footer />
