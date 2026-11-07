@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SuccessModal from "../SuccessModal/SuccessModal";
+import SignOutModal from "../SignOutModal/SignOutModal";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
@@ -174,6 +175,10 @@ function App() {
     setActiveModal("success");
   };
 
+  const handelSignOutModal = () => {
+    setActiveModal("signOut");
+  };
+
   const closeModal = () => {
     setActiveModal("");
   };
@@ -266,6 +271,11 @@ function App() {
           isOpen={activeModal === "success"}
           onClose={closeModal}
           onSecondaryButtonClick={handleLoginModal}
+        />
+        <SignOutModal
+          isOpen={activeModal === "signOut"}
+          onClose={onClose}
+          userData={userData}
         />
         <Footer />
       </div>

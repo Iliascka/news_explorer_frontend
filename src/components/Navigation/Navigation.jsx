@@ -14,6 +14,7 @@ function Navigation({
   handleSignOut,
   userData,
 }) {
+  // const isSavedNews && isLoggedIn={AssignHandler}
   const location = useLocation();
   const navigate = useNavigate();
   const buttonMain = location.pathname === "/";
