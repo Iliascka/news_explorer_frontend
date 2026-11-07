@@ -9,6 +9,7 @@
   justify-content: center;
   background-color: transparent;
   background-color: rgba(0, 0, 0, 0.164);
+  z-index: 10;
   visibility: hidden;
 }
 
@@ -94,4 +95,11 @@
 
 .signOut-modal__button-signOut:hover {
   color: white;
+}
+
+@media screen and (max-width: 510px) {
+  .signOut-modal__close-btn {
+    top: -48px;
+    right: 14px;
+  }
 }
