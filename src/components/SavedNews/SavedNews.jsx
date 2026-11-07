@@ -4,7 +4,12 @@ import NewsCardList from "../NewsCardList/NewsCardList";
 import { useContext } from "react";
 import { ArticlesContext } from "../../contexts/ArticlesContext";
 
-function SavedNews({ userData, handleDeleteArticle }) {
+function SavedNews({
+  userData,
+  handleDeleteArticle,
+  handleSignOutModal,
+  isMobile,
+}) {
   const { savedArticles } = useContext(ArticlesContext);
   const convertText = (text) => {
     const trimmed = text.trim();
@@ -26,7 +31,7 @@ function SavedNews({ userData, handleDeleteArticle }) {
   }
   return (
     <>
-      <Header />
+      <Header handleSignOutModal={handleSignOutModal} isMobile={isMobile} />
       <section className="savedNews">
         <p className="savedNews__header">Saved articles</p>
         <h2 className="savedNews__title">

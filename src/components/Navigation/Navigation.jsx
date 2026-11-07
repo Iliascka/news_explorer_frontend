@@ -1,22 +1,18 @@
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import "./Navigation.css";
-import { removeToken } from "../../utils/token";
 import logoutIconBlack from "../../assets/logoutIconBlack.svg";
 import logoutIconWhite from "../../assets/logoutIconWhite.svg";
 
 function Navigation({
   isSavedNews,
   isLoggedIn,
-  setIsLoggedIn,
   handleLoginModal,
-  isMobileMenu,
-  setIsMobileMenu,
-  handleSignOut,
+  isMobile,
+  handleSignOutModal,
   userData,
 }) {
-  // const isSavedNews && isLoggedIn={AssignHandler}
+  const { isMobileMenu, setIsMobileMenu } = isMobile;
   const location = useLocation();
-  const navigate = useNavigate();
   const buttonMain = location.pathname === "/";
   const buttonIcon =
     buttonMain || isMobileMenu ? logoutIconWhite : logoutIconBlack;
@@ -24,15 +20,6 @@ function Navigation({
   const handleSignInClick = () => {
     handleLoginModal();
     setIsMobileMenu(false);
-  };
-
-  const handleSignOutClick = () => {
-    setIsLoggedIn(false);
-    setIsMobileMenu(false);
-    handleSignOut();
-
-    navigate("/");
-    removeToken();
   };
 
   return (
@@ -64,7 +51,7 @@ function Navigation({
       </ul>
       {isSavedNews || isLoggedIn ? (
         <button
-          onClick={handleSignOutClick}
+          onClick={handleSignOutModal}
           type="button"
           className={`nav__button ${buttonMain || isMobileMenu ? "nav__button_main" : ""}`}
         >

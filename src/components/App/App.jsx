@@ -25,7 +25,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [articles, setArticles] = useState([]);
   const [savedArticles, setSavedArticles] = useState([]);
-  const [activeModal, setActiveModal] = useState("signOut");
+  const [activeModal, setActiveModal] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [noArticles, setNoArticles] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -33,6 +33,7 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [userData, setUserData] = useState({});
   const [authCheck, setAuthCheck] = useState(true);
+  const [isMobileMenu, setIsMobileMenu] = useState(false);
 
   const getItemsData = async () => {
     try {
@@ -163,6 +164,10 @@ function App() {
     setIsEmptySearch(false);
   };
 
+  const handleMobileMenu = () => {
+    setIsMobileMenu((prev) => !prev);
+  };
+
   const handleSignUpModal = () => {
     setActiveModal("signUp");
   };
@@ -175,8 +180,9 @@ function App() {
     setActiveModal("success");
   };
 
-  const handelSignOutModal = () => {
+  const handleSignOutModal = () => {
     setActiveModal("signOut");
+    setIsMobileMenu(false);
   };
 
   const closeModal = () => {
@@ -205,7 +211,12 @@ function App() {
                         handleLoginModal={handleLoginModal}
                         handleSearch={handleSearch}
                         setIsEmptySearch={setIsEmptySearch}
-                        handleSignOut={handleSignOut}
+                        handleSignOutModal={handleSignOutModal}
+                        isMobile={{
+                          isMobileMenu,
+                          setIsMobileMenu,
+                          handleMobileMenu,
+                        }}
                       />
                       {isLoading && <Preloader />}
                       {noArticles && (
@@ -245,6 +256,12 @@ function App() {
                       <SavedNews
                         userData={userData}
                         handleDeleteArticle={handleDeleteArticle}
+                        handleSignOutModal={handleSignOutModal}
+                        isMobile={{
+                          isMobileMenu,
+                          setIsMobileMenu,
+                          handleMobileMenu,
+                        }}
                       />
                     </ProtectedRoute>
                   }
@@ -273,6 +290,9 @@ function App() {
           onSecondaryButtonClick={handleLoginModal}
         />
         <SignOutModal
+          setIsLoggedIn={setIsLoggedIn}
+          // setIsMobileMenu={setIsMobileMenu}
+          handleSignOut={handleSignOut}
           isOpen={activeModal === "signOut"}
           onClose={closeModal}
           userData={userData}

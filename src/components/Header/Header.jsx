@@ -6,17 +6,19 @@ import "./Header.css";
 import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
 import menuIconBlack from "../../assets/menu-black.svg";
-function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
+function Header({
+  isOpen,
+  onClose,
+  handleLoginModal,
+  handleSignOutModal,
+  isMobile,
+}) {
   const location = useLocation();
-  const { isLoggedIn, setIsLoggedIn, userData } =
-    useContext(CurrentUserContext);
+  const { isLoggedIn, userData } = useContext(CurrentUserContext);
   const isSavedNews = location.pathname === "/saved-news";
-  const [isMobileMenu, setIsMobileMenu] = useState(false);
-  const menuIconColor = isSavedNews ? menuIconBlack : menuIcon;
 
-  const handleMobileMenu = () => {
-    setIsMobileMenu((prev) => !prev);
-  };
+  const menuIconColor = isSavedNews ? menuIconBlack : menuIcon;
+  const { isMobileMenu, handleMobileMenu } = isMobile;
 
   return (
     <header
@@ -48,13 +50,11 @@ function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
       )}
       <Navigation
         userData={userData}
-        setIsLoggedIn={setIsLoggedIn}
         handleLoginModal={handleLoginModal}
         isLoggedIn={isLoggedIn}
         isSavedNews={isSavedNews}
-        isMobileMenu={isMobileMenu}
-        setIsMobileMenu={setIsMobileMenu}
-        handleSignOut={handleSignOut}
+        isMobile={isMobile}
+        handleSignOutModal={handleSignOutModal}
       />
       {isMobileMenu && <div className="header__overlay"></div>}
     </header>
