@@ -97,7 +97,7 @@ function App() {
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
     try {
-      const data = await auth.login({ email, password });
+      const data = await auth.signIn({ email, password });
       setUserData(data.user);
       setIsLoggedIn(true);
       setActiveModal("");
@@ -114,7 +114,6 @@ function App() {
         setUserData(data.user);
         setIsLoggedIn(true);
       } catch (err) {
-        console.error(err);
         setIsLoggedIn(false);
       } finally {
         setAuthCheck(false);
@@ -157,7 +156,8 @@ function App() {
     }
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    await auth.signOut();
     setArticles([]);
     setNoArticles(false);
     setErrorMessage(false);

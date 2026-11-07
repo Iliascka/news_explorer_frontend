@@ -16,7 +16,7 @@ export const register = async ({ name, email, password }) => {
   return res.json();
 };
 
-export const login = async ({ email, password }) => {
+export const signIn = async ({ email, password }) => {
   const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
@@ -24,6 +24,14 @@ export const login = async ({ email, password }) => {
     },
     credentials: "include",
     body: JSON.stringify({ email, password }),
+  });
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+};
+
+export const signOut = async () => {
+  const res = await fetch(`${baseUrl}/signout`, {
+    method: "POST",
+    credentials: "include",
   });
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
