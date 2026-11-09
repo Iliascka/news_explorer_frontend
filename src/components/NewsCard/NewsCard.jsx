@@ -77,7 +77,9 @@ function NewsCard({
         type="button"
         className={`card__save-button ${bookmarkSaved} ${buttonType}`}
       ></button>
-      {!isLoggedIn && <span className="card__tooltip">{toolTipText}</span>}
+      {(!isLoggedIn || isSavedPage) && (
+        <span className="card__tooltip">{toolTipText}</span>
+      )}
 
       <div className="card__content">
         <p className="card__header">{formattedDate}</p>

@@ -75,9 +75,9 @@ function App() {
         throw new Error("Failed to delete the article. Please try again");
       }
 
-      const { message } = await deleteArticle(article);
+      await deleteArticle(article);
       const newArticles = savedArticles.filter((item) => item !== article);
-      alert(message);
+
       setSavedArticles(newArticles);
     } catch (err) {
       console.error(err);
