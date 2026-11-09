@@ -51,7 +51,10 @@ function App() {
     if (!isLoggedIn) {
       return;
     }
-    getItemsData();
+    const fetchItems = async () => {
+      await getItemsData();
+    };
+    fetchItems();
   }, [isLoggedIn]);
 
   const handleSaveArticle = async (article) => {
@@ -113,7 +116,7 @@ function App() {
         const data = await auth.getCurrentUser();
         setUserData(data.user);
         setIsLoggedIn(true);
-      } catch (err) {
+      } catch {
         setIsLoggedIn(false);
       } finally {
         setAuthCheck(false);

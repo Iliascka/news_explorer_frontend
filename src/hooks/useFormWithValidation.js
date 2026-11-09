@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 
 //  Custom form validation logic.
 //  validateValue checks individual fields, while useFormWithValidation
@@ -69,21 +69,16 @@ export function useFormWithValidation(defaultValues) {
   }, []);
 
   const handleChange = (evt) => {
-    // Runs whenever an input changes.
-    // Reads the input's name and value, preserves previous form values,
-    // and updates the matching property dynamically using [name].
-    // Validates the updated form and returns nextValues to update state.
     const { name, value } = evt.target;
-    setValues((previousValues) => ({
-      ...previousValues,
-      [name]: value,
-    }));
-  };
 
-  //Validates the updated form values after every change, keeping errors and validity in sync.
-  useEffect(() => {
-    validateForm(values);
-  }, [values, validateForm]);
+    const nextValues = {
+      ...values,
+      [name]: value,
+    };
+
+    setValues(nextValues);
+    validateForm(nextValues);
+  };
 
   const resetForm = useCallback(
     // Restores form values and clears validation/submission state.

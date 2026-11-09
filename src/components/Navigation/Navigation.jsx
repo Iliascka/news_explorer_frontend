@@ -1,4 +1,4 @@
-import { useLocation, NavLink, useNavigate } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import logoutIconBlack from "../../assets/logoutIconBlack.svg";
 import logoutIconWhite from "../../assets/logoutIconWhite.svg";

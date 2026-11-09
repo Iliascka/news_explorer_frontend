@@ -8,7 +8,6 @@ function SignOutModal({
   onClose,
   userData,
   setIsLoggedIn,
-  setIsMobileMenu,
   handleSignOut,
 }) {
   const { handleOverlayClick } = useModalClose(isOpen, onClose);

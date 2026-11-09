@@ -1,5 +1,5 @@
 import Navigation from "../Navigation/Navigation";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useLocation, NavLink } from "react-router-dom";
 import "./Header.css";
