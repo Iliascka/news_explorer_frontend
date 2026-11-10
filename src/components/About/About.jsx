@@ -1,5 +1,4 @@
 import "./About.css";
-// import placeholderIcon from "../../assets/placeholder-icon.svg";
 import personalPic from "../../assets/personal-pic.jpg";
 function About() {
   return (
@@ -12,8 +11,8 @@ function About() {
             className="about__placeholder-photo"
           />
         </div>
-        <div className="about__author">
-          <h2 className="about__title">About the author</h2>
+        <div className="about__developer">
+          <h2 className="about__title">About the developer</h2>
           <div className="about__text">
             <p className="about_paragraph ">
               <span className="about_paragraph_bold">
