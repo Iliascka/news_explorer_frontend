@@ -141,6 +141,7 @@ function App() {
       if (data.articles.length === 0) {
         setNoArticles(true);
       }
+      console.log(data.articles[0]);
       const updatedArticles = data.articles.map((item) => ({
         title: item.title,
         link: item.url,

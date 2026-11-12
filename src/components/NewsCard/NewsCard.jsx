@@ -51,6 +51,10 @@ function NewsCard({
         ? handleDeleteCard
         : undefined;
 
+  // const handleClickLink = () => {
+
+  // }
+
   return (
     <li className="card">
       {hasImage ? (
@@ -81,12 +85,19 @@ function NewsCard({
         <span className="card__tooltip">{toolTipText}</span>
       )}
 
-      <div className="card__content">
-        <p className="card__header">{formattedDate}</p>
-        <h2 className="card__title">{title}</h2>
-        <p className="card__description">{text}</p>
-        <p className="card__footer">{source}</p>
-      </div>
+      <a
+        class="card__link"
+        href={article.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div className="card__content">
+          <p className="card__header">{formattedDate}</p>
+          <h2 className="card__title">{title}</h2>
+          <p className="card__description">{text}</p>
+          <p className="card__footer">{source}</p>
+        </div>{" "}
+      </a>
     </li>
   );
 }
