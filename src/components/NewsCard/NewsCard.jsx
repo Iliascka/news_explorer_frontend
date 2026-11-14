@@ -15,7 +15,7 @@ function NewsCard({
   article,
   isSaved,
 }) {
-  const { isLoggedIn } = useContext(CurrentUserContext);
+  const { isLoggedIn, setActiveModal } = useContext(CurrentUserContext);
   const location = useLocation();
   const [failedImageUrl, setFailedImageUrl] = useState(null);
   const isSavedPage = location.pathname === "/saved-news";
@@ -51,9 +51,10 @@ function NewsCard({
         ? handleDeleteCard
         : undefined;
 
-  // const handleClickLink = () => {
-
   // }
+  const handleSave = () => {
+    !isLoggedIn ? setActiveModal("signUp") : handlerType?.();
+  };
 
   return (
     <li className="card">
@@ -77,7 +78,7 @@ function NewsCard({
         <span className="card__keyword">{keyword}</span>
       )}
       <button
-        onClick={handlerType}
+        onClick={handleSave}
         type="button"
         className={`card__save-button ${bookmarkSaved} ${buttonType}`}
       ></button>

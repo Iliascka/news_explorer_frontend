@@ -197,7 +197,7 @@ function App() {
     <>
       <div className="page">
         <CurrentUserContext.Provider
-          value={{ isLoggedIn, setIsLoggedIn, userData }}
+          value={{ isLoggedIn, setIsLoggedIn, userData, setActiveModal }}
         >
           <ArticlesContext.Provider
             value={{ articles, setArticles, savedArticles }}
