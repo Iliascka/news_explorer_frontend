@@ -1,5 +1,5 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 
 function RegisterModal({
@@ -7,6 +7,7 @@ function RegisterModal({
   onClose,
   onSecondaryButtonClick,
   handleSuccessModal,
+  handleRegister,
 }) {
   const defaultValues = useMemo(
     () => ({
@@ -16,6 +17,7 @@ function RegisterModal({
     }),
     [],
   );
+  const [apiError, setApiError] = useState("");
 
   const {
     values,
@@ -33,16 +35,35 @@ function RegisterModal({
     handleSuccessModal();
   };
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     setHasSubmitted(true);
     const { nextIsValid } = validateForm(values);
     if (!nextIsValid) {
       return;
     }
-    handleSubmitModal();
+    try {
+      setApiError("");
+
+      await handleRegister(values);
+      handleSubmitModal();
+    } catch (err) {
+      console.log("registrations error:", err.message);
+      console.log("error status:", err?.status);
+      if (err.status === 409) {
+        setApiError("This email is not available");
+      } else {
+        setApiError("Registration failed. Please try again.");
+      }
+      console.error(err);
+    }
   }
 
+  // Show an error only when it exists AND the user has either
+  // attempted submission or entered text in that specific field.
+  // Boolean() converts a possible string/undefined error value
+  // into an explicit true/false result.
+  // This keeps untouched, empty fields from showing errors prematurely.
   const showNameError =
     Boolean(errors.name) && (hasSubmitted || values.name.trim().length > 0);
 
@@ -63,7 +84,25 @@ function RegisterModal({
       onClose={onClose}
       onSecondaryButtonClick={onSecondaryButtonClick}
       isValid={isValid}
+      apiError={apiError}
     >
+      <label htmlFor="register-username" className="modal__label">
+        Name
+        <input
+          type="text"
+          className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
+          id="register-username"
+          placeholder="Enter your username"
+          name="name"
+          value={values.name}
+          onChange={handleChange}
+          aria-invalid={showNameError}
+        />
+        {showNameError ? (
+          <span className="modal__error">{errors.name}</span>
+        ) : null}
+      </label>
+
       <label htmlFor="register-email" className="modal__label">
         Email
         <input
@@ -85,7 +124,7 @@ function RegisterModal({
         <input
           id="register-password"
           type="password"
-          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
+          className={`modal__input ${showPasswordError ? "modal__input_type_error" : ""}`}
           name="password"
           value={values.password}
           onChange={handleChange}
@@ -93,22 +132,6 @@ function RegisterModal({
         />
         {showPasswordError ? (
           <span className="modal__error">{errors.password}</span>
-        ) : null}
-      </label>
-      <label htmlFor="register-username" className="modal__label">
-        Name
-        <input
-          type="text"
-          className={`modal__input ${showNameError ? "modal__input_type_error" : ""}`}
-          id="register-username"
-          placeholder="Enter your username"
-          name="name"
-          value={values.name}
-          onChange={handleChange}
-          aria-invalid={showNameError}
-        />
-        {showNameError ? (
-          <span className="modal__error">{errors.name}</span>
         ) : null}
       </label>
 

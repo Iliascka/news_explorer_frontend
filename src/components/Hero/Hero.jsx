@@ -7,7 +7,8 @@ function Hero({
   handleLoginModal,
   handleSearch,
   setIsEmptySearch,
-  handleSignOut,
+  handleSignOutModal,
+  isMobile,
 }) {
   return (
     <div className="hero">
@@ -15,8 +16,8 @@ function Hero({
         isOpen={isOpen}
         onClose={onClose}
         handleLoginModal={handleLoginModal}
-        handleSearch={handleSearch}
-        handleSignOut={handleSignOut}
+        handleSignOutModal={handleSignOutModal}
+        isMobile={isMobile}
       />
       <HeroContent
         handleSearch={handleSearch}

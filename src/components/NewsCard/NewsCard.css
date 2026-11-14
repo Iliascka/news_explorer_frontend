@@ -121,6 +121,15 @@
   display: none;
 }
 
+.card__link {
+  text-decoration: none;
+}
+
+.card__link:has(.card__title:hover, .card__description:hover)
+  :is(.card__title, .card__description) {
+  opacity: 0.5;
+}
+
 .card__button_type_bookmark {
   background-image: url("../../assets/bookmark.svg");
   background-repeat: no-repeat;

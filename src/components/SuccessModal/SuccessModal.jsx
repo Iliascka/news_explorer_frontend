@@ -2,7 +2,7 @@ import "./SuccessModal.css";
 import modalCloseIcon from "../../assets/modal-close.svg";
 import useModalClose from "../../hooks/useModalClose";
 
-function SuccessModal({ onClose, isOpen }) {
+function SuccessModal({ onClose, isOpen, onSecondaryButtonClick }) {
   const { handleOverlayClick } = useModalClose(isOpen, onClose);
 
   return (
@@ -21,7 +21,12 @@ function SuccessModal({ onClose, isOpen }) {
         <h3 className="success-modal__text">
           Registration successfully completed!
         </h3>
-        <button className="success-modal__button">Sign in</button>
+        <button
+          onClick={onSecondaryButtonClick}
+          className="success-modal__button"
+        >
+          Sign in
+        </button>
       </div>
     </div>
   );

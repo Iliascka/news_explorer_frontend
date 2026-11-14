@@ -12,13 +12,13 @@ import { Routes, Route } from "react-router-dom";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import SuccessModal from "../SuccessModal/SuccessModal";
+import SignOutModal from "../SignOutModal/SignOutModal";
 import Preloader from "../Preloader/Preloader";
 import NothingFound from "../NothingFound/NothingFound";
 import { getNewsApi } from "../../utils/NewsApi";
 import * as auth from "../../utils/auth";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
-import { saveArticle, deleteArticle } from "../../utils/api";
-import { setToken, getToken, removeToken } from "../../utils//token";
+import { getArticles, saveArticle, deleteArticle } from "../../utils/MainApi";
 
 function App() {
   // States
@@ -32,27 +32,29 @@ function App() {
   const [isEmptySearch, setIsEmptySearch] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [userData, setUserData] = useState({});
+  const [authCheck, setAuthCheck] = useState(true);
+  const [isMobileMenu, setIsMobileMenu] = useState(false);
 
-  // Development only: Uncomment to test the mock GET API and import the getItems API function from api.js
+  const getItemsData = async () => {
+    try {
+      const data = await getArticles();
+      setSavedArticles(data);
+      if (data.length === 0) {
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  // const getItemsData = async () => {
-  //   try {
-  //     const data = await getItems();
-  //     if (data.length === 0) {
-  //       return;
-  //     }
-  //     setArticles(data);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // Uncomment and Call the getItemsData
   useEffect(() => {
     if (!isLoggedIn) {
       return;
     }
-    // getItemsData();
+    const fetchItems = async () => {
+      await getItemsData();
+    };
+    fetchItems();
   }, [isLoggedIn]);
 
   const handleSaveArticle = async (article) => {
@@ -75,26 +77,31 @@ function App() {
       if (!article) {
         throw new Error("Failed to delete the article. Please try again");
       }
-      const { message } = await deleteArticle(article);
+
+      await deleteArticle(article);
       const newArticles = savedArticles.filter((item) => item !== article);
-      alert(message);
+
       setSavedArticles(newArticles);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const handleRegister = async ({ name, email, password }) => {
+    if (!name || !email || !password) return;
+    try {
+      await auth.register({ name, email, password });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) return;
     try {
-      const data = await auth.authorize({ email, password });
-      if (!data.token) {
-        throw new Error(`Error: No token received`);
-      }
-
-      setToken(data.token);
-      const userData = await auth.checkToken(data.token);
-      setUserData(userData.data);
+      const data = await auth.signIn({ email, password });
+      setUserData(data.user);
       setIsLoggedIn(true);
       setActiveModal("");
     } catch (err) {
@@ -104,28 +111,24 @@ function App() {
   };
 
   useEffect(() => {
-    const verifyToken = async () => {
-      if (!getToken()) return;
-
+    const verifyUserCookies = async () => {
       try {
-        const data = await auth.checkToken(getToken());
-        setUserData(data.data);
-
+        const data = await auth.getCurrentUser();
+        setUserData(data.user);
         setIsLoggedIn(true);
-      } catch (err) {
-        console.error(err);
+      } catch {
         setIsLoggedIn(false);
-        removeToken();
+      } finally {
+        setAuthCheck(false);
       }
     };
-    verifyToken();
+    verifyUserCookies();
   }, []);
 
   const handleSearch = async (keyword) => {
     setNoArticles(false);
     setErrorMessage(false);
     setIsEmptySearch(false);
-
     if (!keyword.trim()) return;
 
     try {
@@ -138,6 +141,7 @@ function App() {
       if (data.articles.length === 0) {
         setNoArticles(true);
       }
+      console.log(data.articles[0]);
       const updatedArticles = data.articles.map((item) => ({
         title: item.title,
         link: item.url,
@@ -156,11 +160,16 @@ function App() {
     }
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    await auth.signOut();
     setArticles([]);
     setNoArticles(false);
     setErrorMessage(false);
     setIsEmptySearch(false);
+  };
+
+  const handleMobileMenu = () => {
+    setIsMobileMenu((prev) => !prev);
   };
 
   const handleSignUpModal = () => {
@@ -175,6 +184,11 @@ function App() {
     setActiveModal("success");
   };
 
+  const handleSignOutModal = () => {
+    setActiveModal("signOut");
+    setIsMobileMenu(false);
+  };
+
   const closeModal = () => {
     setActiveModal("");
   };
@@ -182,7 +196,9 @@ function App() {
   return (
     <>
       <div className="page">
-        <CurrentUserContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <CurrentUserContext.Provider
+          value={{ isLoggedIn, setIsLoggedIn, userData, setActiveModal }}
+        >
           <ArticlesContext.Provider
             value={{ articles, setArticles, savedArticles }}
           >
@@ -199,7 +215,12 @@ function App() {
                         handleLoginModal={handleLoginModal}
                         handleSearch={handleSearch}
                         setIsEmptySearch={setIsEmptySearch}
-                        handleSignOut={handleSignOut}
+                        handleSignOutModal={handleSignOutModal}
+                        isMobile={{
+                          isMobileMenu,
+                          setIsMobileMenu,
+                          handleMobileMenu,
+                        }}
                       />
                       {isLoading && <Preloader />}
                       {noArticles && (
@@ -232,10 +253,19 @@ function App() {
                 <Route
                   path="/saved-news"
                   element={
-                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <ProtectedRoute
+                      isLoggedIn={isLoggedIn}
+                      authCheck={authCheck}
+                    >
                       <SavedNews
                         userData={userData}
                         handleDeleteArticle={handleDeleteArticle}
+                        handleSignOutModal={handleSignOutModal}
+                        isMobile={{
+                          isMobileMenu,
+                          setIsMobileMenu,
+                          handleMobileMenu,
+                        }}
                       />
                     </ProtectedRoute>
                   }
@@ -247,9 +277,9 @@ function App() {
         <RegisterModal
           isOpen={activeModal === "signUp"}
           onClose={closeModal}
-          handleLoginModal={handleLoginModal}
           onSecondaryButtonClick={handleLoginModal}
           handleSuccessModal={handleSuccessModal}
+          handleRegister={handleRegister}
         />
         <LoginModal
           handleLogin={handleLogin}
@@ -257,7 +287,20 @@ function App() {
           onClose={closeModal}
           onSecondaryButtonClick={handleSignUpModal}
         />
-        <SuccessModal isOpen={activeModal === "success"} onClose={closeModal} />
+        <SuccessModal
+          userData={userData}
+          isOpen={activeModal === "success"}
+          onClose={closeModal}
+          onSecondaryButtonClick={handleLoginModal}
+        />
+        <SignOutModal
+          setIsLoggedIn={setIsLoggedIn}
+          // setIsMobileMenu={setIsMobileMenu}
+          handleSignOut={handleSignOut}
+          isOpen={activeModal === "signOut"}
+          onClose={closeModal}
+          userData={userData}
+        />
         <Footer />
       </div>
     </>
