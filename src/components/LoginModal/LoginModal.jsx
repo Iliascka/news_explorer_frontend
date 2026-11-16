@@ -76,7 +76,7 @@ function LoginModal({ handleLogin, isOpen, onClose, onSecondaryButtonClick }) {
         <input
           id="login-password"
           type="password"
-          className={`modal__input ${showEmailError ? "modal__input_type_error" : ""}`}
+          className={`modal__input ${showPasswordError ? "modal__input_type_error" : ""}`}
           placeholder="Enter password"
           name="password"
           onChange={handleChange}

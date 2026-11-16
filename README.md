@@ -1,17 +1,20 @@
 # NewsExplorer
 
-NewsExplorer is a responsive React application that allows users to search for news articles, explore results, and save articles for later reading.
+NewsExplorer is a responsive full-stack web application that allows users to search for news articles, explore results, and save their favorite articles for later reading.
 
 ## Features
 
 - Search for news articles by keyword
 - Display article cards with images and descriptions
-- Save and remove articles
-- View saved articles
-- Login interface and protected functionality
+- Register, log in, and log out securely
+- Save and remove articles from a personal collection
+- View saved articles on a protected page
+- Maintain authentication across page refreshes
 - Responsive layout for different screen sizes
 
 ## Technologies
+
+**Frontend**
 
 - React
 - JavaScript
@@ -19,9 +22,25 @@ NewsExplorer is a responsive React application that allows users to search for n
 - React Router
 - CSS
 
+**Backend**
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT authentication
+- Celebrate / Joi validation
+
+**Deployment**
+
+- Google Cloud
+- Nginx
+- PM2
+- HTTPS
+
 ## Live Demo
 
-[View NewsExplorer](https://iliascka.github.io/news_explorer_frontend/)
+[View NewsExplorer](https://news-explorer.utdnews.com)
 
 ## Project Pitch Video
 
@@ -29,6 +48,8 @@ NewsExplorer is a responsive React application that allows users to search for n
 
 ## Project Status
 
-**Stage 1 — Frontend:** React application using mock API data and authentication.
+**Stage 1 - Frontend:** Developed the responsive React interface, article search functionality, and initial authentication flow.
 
-**Stage 2 — Backend:** Planned integration with a custom API, database, and authentication system.
+**Stage 2 - Backend:** Implemented the REST API, MongoDB models, authentication, authorization, validation, centralized error handling, and logging.
+
+**Stage 3 - Full-Stack Integration:** Connected the React frontend to the Express backend, implemented persistent authentication and saved articles, and deployed the application to Google Cloud.

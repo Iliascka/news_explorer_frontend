@@ -1,21 +1,24 @@
 import Navigation from "../Navigation/Navigation";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useLocation, NavLink } from "react-router-dom";
 import "./Header.css";
 import menuIcon from "../../assets/menu.svg";
 import closeIcon from "../../assets/close.svg";
 import menuIconBlack from "../../assets/menu-black.svg";
-function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
+function Header({
+  isOpen,
+  onClose,
+  handleLoginModal,
+  handleSignOutModal,
+  isMobile,
+}) {
   const location = useLocation();
-  const { isLoggedIn, setIsLoggedIn } = useContext(CurrentUserContext);
+  const { isLoggedIn, userData } = useContext(CurrentUserContext);
   const isSavedNews = location.pathname === "/saved-news";
-  const [isMobileMenu, setIsMobileMenu] = useState(false);
-  const menuIconColor = isSavedNews ? menuIconBlack : menuIcon;
 
-  const handleMobileMenu = () => {
-    setIsMobileMenu((prev) => !prev);
-  };
+  const menuIconColor = isSavedNews ? menuIconBlack : menuIcon;
+  const { isMobileMenu, handleMobileMenu } = isMobile;
 
   return (
     <header
@@ -38,19 +41,20 @@ function Header({ isOpen, onClose, handleLoginModal, handleSignOut }) {
         >
           <img
             src={!isMobileMenu ? menuIconColor : closeIcon}
-            alt={isMobileMenu ? "Close navigation menu" : "Open navigation menu"}
+            alt={
+              isMobileMenu ? "Close navigation menu" : "Open navigation menu"
+            }
             className="header__menu-icon"
           />
         </button>
       )}
       <Navigation
-        setIsLoggedIn={setIsLoggedIn}
+        userData={userData}
         handleLoginModal={handleLoginModal}
         isLoggedIn={isLoggedIn}
         isSavedNews={isSavedNews}
-        isMobileMenu={isMobileMenu}
-        setIsMobileMenu={setIsMobileMenu}
-        handleSignOut={handleSignOut}
+        isMobile={isMobile}
+        handleSignOutModal={handleSignOutModal}
       />
       {isMobileMenu && <div className="header__overlay"></div>}
     </header>

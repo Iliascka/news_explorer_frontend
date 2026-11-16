@@ -12,28 +12,31 @@ function Footer() {
           <NavLink className="nav-link" to="/">
             <li className="footer__list-item  nav-link_saved-news">Home</li>
           </NavLink>
-          <NavLink
+          <a
             className="nav-link nav-link_saved-news"
-            to="https://tripleten.com"
+            href="https://tripleten.com"
           >
             <li className="footer__list-item">TripleTen</li>
-          </NavLink>
+          </a>
         </ul>
         <div className="footer__social-icons">
-          <NavLink className="nav-link" to="/">
+          <a className="nav-link" href="https://github.com/Iliascka">
             <img
               src={githubIcon}
               alt="GitHub"
               className="footer__social-icon"
             />
-          </NavLink>
-          <NavLink className="nav-link" to="/">
+          </a>
+          <a
+            className="nav-link"
+            href="http://www.linkedin.com/in/ilias-katsantonis"
+          >
             <img
               src={linkedinIcon}
               alt="LinkedIn"
               className="footer__social-icon"
             />
-          </NavLink>
+          </a>
         </div>
       </div>
     </section>

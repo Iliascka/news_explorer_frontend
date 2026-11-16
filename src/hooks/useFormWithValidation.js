@@ -1,6 +1,17 @@
 import { useCallback, useState } from "react";
 
+//  Custom form validation logic.
+//  validateValue checks individual fields, while useFormWithValidation
+//  manages form values, errors, validity, and submission attempts.
+//  useCallback preserves function references between renders until
+//  their dependencies change. It does not execute functions automatically.
+
 const validateValue = (name, value = "") => {
+  //  Validates one field using its name and current value.
+  //  The switch selects the corresponding validation rules.
+  //  Returns an error message if invalid, or "" if valid.
+  //  normalizedValue ensures string methods can be used safely.
+
   const normalizedValue = typeof value === "string" ? value : "";
 
   switch (name) {
@@ -34,6 +45,13 @@ export function useFormWithValidation(defaultValues) {
   const [hasSubmitted, setHasSubmitted] = useState(false);
 
   const validateForm = useCallback((formValues) => {
+    //  Validates every field in the provided formValues object.
+    //  Object.keys() creates an array of field names.
+    //  reduce() builds an errors object, starting from {}.
+    //  formValues[fieldName] accesses each field's value in the original object.
+    //  Updates errors and isValid, then returns the calculated results
+    //  so they can also be used immediately during submission.
+
     const nextErrors = Object.keys(formValues).reduce((acc, fieldName) => {
       const errorMessage = validateValue(fieldName, formValues[fieldName]);
       if (errorMessage) {
@@ -43,26 +61,31 @@ export function useFormWithValidation(defaultValues) {
     }, {});
 
     setErrors(nextErrors);
+    // Valid only when no error messages exist; an empty errors object also passes.
     const nextIsValid = Object.values(nextErrors).every((error) => !error);
     setIsValid(nextIsValid);
 
     return { nextErrors, nextIsValid };
   }, []);
 
-  const handleChange = useCallback(
-    (evt) => {
-      const { name, value } = evt.target;
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
 
-      setValues((previousValues) => {
-        const nextValues = { ...previousValues, [name]: value };
-        validateForm(nextValues);
-        return nextValues;
-      });
-    },
-    [validateForm],
-  );
+    const nextValues = {
+      ...values,
+      [name]: value,
+    };
+
+    setValues(nextValues);
+    validateForm(nextValues);
+  };
 
   const resetForm = useCallback(
+    // Restores form values and clears validation/submission state.
+    // newValues is optional. If no argument is provided, it receives
+    // defaultValues, preserving the expected form fields.
+    // A custom object can also be passed to reset to specific values.
+    // Without the fallback, calling resetForm() would set values to undefined.
     (newValues = defaultValues) => {
       setValues(newValues);
       setErrors({});

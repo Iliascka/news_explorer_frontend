@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -i ~/.ssh/id_ed25519 -r ./dist/. iliasckatsantonis@34.23.218.190:~/news-explorer-frontend/"
   },
   "dependencies": {
     "react": "^19.2.8",

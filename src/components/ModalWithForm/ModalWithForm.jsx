@@ -12,6 +12,7 @@ function ModalWithForm({
   onSecondaryButtonClick,
   onSubmit,
   isValid,
+  apiError,
 }) {
   const { handleOverlayClick } = useModalClose(isOpen, onClose);
 
@@ -28,6 +29,9 @@ function ModalWithForm({
         <form onSubmit={onSubmit} className="modal__form">
           {children}
           <div className="modal__buttons">
+            {apiError && (
+              <span className="modal__api-email-error">{apiError}</span>
+            )}
             <button type="submit" className="modal__submit" disabled={!isValid}>
               {buttonText}
             </button>

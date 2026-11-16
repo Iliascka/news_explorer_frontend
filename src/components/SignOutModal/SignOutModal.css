@@ -1,0 +1,105 @@
+.signOut-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.164);
+  z-index: 10;
+  visibility: hidden;
+}
+
+.signOut-modal-opened {
+  visibility: visible;
+}
+
+.signOut-modal__content {
+  max-width: 430px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 43px 0px 41px 36px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: flex-start;
+  gap: 24px;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+}
+
+.signOut-modal__close-btn {
+  position: absolute;
+  top: -46px;
+  right: -46px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.signOut-modal__close-btn:hover {
+  opacity: 0.7;
+}
+
+.signOut-modal__text {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto";
+  font-weight: 900;
+  font-size: 24px;
+  margin: 0;
+  gap: 8px;
+  max-width: 300px;
+}
+
+.singOut-modal_buttons {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.signOut-modal__button {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 18px;
+  height: 36px;
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(47, 113, 229, 1);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease box-shadow 0.2s ease;
+}
+
+.signOut-modal__button-signOut {
+  background: transparent;
+  border: 1px solid rgba(47, 113, 229, 1);
+  color: rgba(47, 113, 229, 1);
+}
+
+.signOut-modal__button:hover {
+  background-color: rgba(47, 113, 229, 0.657);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.signOut-modal__button-signOut:hover {
+  color: white;
+  border: 1px solid rgba(47, 113, 229, 0);
+}
+
+@media screen and (max-width: 510px) {
+  .signOut-modal__close-btn {
+    top: -48px;
+    right: 14px;
+  }
+}

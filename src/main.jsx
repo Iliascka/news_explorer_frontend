@@ -7,7 +7,7 @@ import "./index.css";
 import App from "../src/components/App/App";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter basename="news_explorer_frontend">
+  <BrowserRouter basename="/">
     <StrictMode>
       <App />
     </StrictMode>
