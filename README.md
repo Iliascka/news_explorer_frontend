@@ -42,9 +42,9 @@ NewsExplorer is a responsive full-stack web application that allows users to sea
 
 [View NewsExplorer](https://news-explorer.utdnews.com)
 
-## Project Pitch Video
+## Backend Repository
 
-[Watch the NewsExplorer Project Pitch](https://www.loom.com/share/3c0c300d2d80454984c078979d3a88e4)
+[NewsExplorer Backend](https://github.com/Iliascka/news_explorer_backend)
 
 ## Project Status
 
